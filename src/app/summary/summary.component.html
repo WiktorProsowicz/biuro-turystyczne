@@ -1,0 +1,24 @@
+<div *ngIf="tours && tours.length" class="container">
+  <h2 class="mt-4 mb-3">Summary</h2>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <p class="mb-1">Total Booked Seats:</p>
+          <h4>{{ getTotalBookedSeats() }}</h4>
+        </div>
+        <div class="col-md-4">
+          <p class="mb-1">Total Booked Tours:</p>
+          <h4>{{ getTotalBookedTours() }}</h4>
+        </div>
+        <div class="col-md-4">
+          <p class="mb-1">Total Price:</p>
+          <h4>{{ adjustToCurrency(getTotalPrice()) | currency: this.currencyCode }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!tours || tours.length === 0" class="container">
+  <p class="mt-4">No tours available.</p>
+</div>
