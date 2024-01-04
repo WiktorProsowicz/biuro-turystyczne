@@ -1,0 +1,65 @@
+<div class="shadow p-3" [ngClass]="getTourSeatsIndication()">
+          <div class="d-flex align-items-center justify-content-center rounded-circle tour-image-container">
+            <img [src]="tour.image" class="rounded-circle" alt="Tour Image"
+              style="overflow: hidden; width: 400px; height: 400px; object-fit: cover;">
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">{{ tour.name | uppercase }}</h5>
+            <p class="card-text">{{ tour.description }}</p>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li><strong>Country:</strong> {{ tour.targetCountry | uppercase }}</li>
+              <li><strong>Dates:</strong> {{ tour.startDate }} - {{ tour.endDate }}</li>
+              <li><strong>Price:</strong> {{ adjustToCurrency(tour.price) | currency: currencyCode }}</li>
+              <li><strong>Max People:</strong> {{ tour.maxPeople }}</li>
+              <hr />
+              <li [ngClass]="{'low-seats': tour.maxPeople - cumulativeBookedSeats() <= 3}">
+                <strong>Available Seats:</strong> {{ tour.maxPeople - cumulativeBookedSeats() }}
+              </li>
+            </ul>
+            <div>
+              <div class="btn-group d-flex gap-5 justify-content-center" role="group">
+                <button class="btn btn-primary rounded-pill" (click)="bookTour()"
+                  [disabled]="cumulativeBookedSeats() === tour.maxPeople">
+                  <i class="bi bi-cart-plus-fill"></i>
+                </button>
+                <button class="btn btn-secondary rounded-pill" (click)="cancelTour()"
+                  [disabled]="this.additionalBookedSeats === 0">
+                  <i class="bi bi-cart-x-fill"></i>
+                </button>
+                <button class="btn btn-danger rounded-pill" (click)="deleteTour()">
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </div>
+            </div>
+
+            <div *ngIf="tour.bookedSeats === tour.maxPeople; then noSeatsMsg"></div>
+
+            <ng-template #noSeatsMsg>
+              <div class="p-3">
+                <strong class="m-0 p-0" style="color: rgb(145, 51, 51)">This tour is fully booked!</strong>
+              </div>
+            </ng-template>
+
+            <div class="tour-rating p-3 d-flex justify-content-center">
+              <div class="star-rating">
+                <a (click)="rateTour(1)" class="link-secondary" [ngClass]="{'link-warning': tour.rating >= 1}">
+                  <i class="bi bi-star-fill"></i>
+                </a>
+                <a (click)="rateTour(2)" class="link-secondary" [ngClass]="{'link-warning': tour.rating >= 2}">
+                  <i class="bi bi-star-fill"></i>
+                </a>
+                <a (click)="rateTour(3)" class="link-secondary" [ngClass]="{'link-warning': tour.rating >= 3}">
+                  <i class="bi bi-star-fill"></i>
+                </a>
+                <a (click)="rateTour(4)" class="link-secondary" [ngClass]="{'link-warning': tour.rating >= 4}">
+                  <i class="bi bi-star-fill"></i>
+                </a>
+                <a (click)="rateTour(5)" class="link-secondary" [ngClass]="{'link-warning': tour.rating >= 5}">
+                  <i class="bi bi-star-fill"></i>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
