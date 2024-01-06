@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-2">
+<app-menu></app-menu>
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-2">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
@@ -40,60 +43,11 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->
 
 
-<div class="container">
 
-  <app-basket [toursBooking]="this.toursBooking" [tours]="this.tours" [currencyCode]="this.currencyCode"
-    (tourBooked)="this.bookTour($event)" (tourCanceled)="this.cancelTour($event)"
-    (checkOut)="this.pushToHistory($event)"></app-basket>
 
-  <div class="container-fluid mt-3 bg-secondary p-3 text-light">
-    <form class="mb-4">
-      <div class="row g-3">
-        <div class="col-md-3">
-          <label for="priceFilter" class="form-label">Price:</label>
-          <div class="input-group">
-            <input type="number" class="form-control form-control-lg" id="minPriceFilter" name="minPriceFilter"
-              [(ngModel)]="minPriceFilter" placeholder="Min">
-            <span class="input-group-text">-</span>
-            <input type="number" class="form-control form-control-lg" id="maxPriceFilter" name="maxPriceFilter"
-              [(ngModel)]="maxPriceFilter" placeholder="Max">
-          </div>
-        </div>
-        <div class="col-md-3">
-          <label for="dateFilter" class="form-label">Date Range:</label>
-          <input type="date" class="form-control form-control-lg" id="startDateFilter" name="startDateFilter"
-            [(ngModel)]="startDateFilter" [min]="getMinDate()" [max]="getMaxDate()">
-          <span class="mx-2">to</span>
-          <input type="date" class="form-control form-control-lg" id="endDateFilter" name="endDateFilter"
-            [(ngModel)]="endDateFilter" [min]="getMinDate()" [max]="getMaxDate()">
-        </div>
-        <div class="col-md-3">
-          <label for="ratingFilter" class="form-label">Rating:</label>
-          <div class="d-flex flex-wrap gap-3">
-            <label class="form-check-label" *ngFor="let rating of getAvailableRatings()">
-              <input type="checkbox" class="form-check-input" id="{{ rating }}" [name]="rating"
-                [(ngModel)]="ratingsFilter[rating]" [value]="rating" (change)="this.reload()">
-              {{ rating }} stars
-            </label>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <label for="destinationFilter" class="form-label">Destination:</label>
-          <div class="d-flex flex-wrap gap-3">
-            <label class="form-check-label" *ngFor="let destination of getAvailableDestinations()">
-              <input type="checkbox" class="form-check-input" id="destCheckbox{{ destination }}" [name]="destination"
-                [(ngModel)]="destinationFilter[destination]" [value]="destination" (change)="this.reload()">
-              {{ destination }}
-            </label>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
 
 
 <div class="container-fluid p-5">
@@ -102,13 +56,11 @@
 
     <div class="col-md-8">
 
-      <div class="row"
-        *ngFor="let tour of (tours | filteredTours: minPriceFilter:maxPriceFilter:startDateFilter:endDateFilter:ratingsFilter:destinationFilter)">
+      <div class="row" *ngFor="let tour of (getTours() | filteredTours: this.toursFilterService.toursFilter)">
 
         <div class="col-md-8 offset-md-2 mb-4 p-2" [ngStyle]="getTourPriceIndication(tour)">
 
-          <app-tour [tour]="tour" [currencyCode]="this.currencyCode" [additionalBookedSeats]="toursBooking[tour.id]"
-            (tourDeleted)="deleteTour(tour)" (tourCanceled)="cancelTour(tour)" (tourBooked)="bookTour(tour)"></app-tour>
+          <app-tour [tour]="tour"></app-tour>
 
         </div>
       </div>
@@ -117,53 +69,7 @@
 
     <div class="col-md-4">
 
-      <div class="row">
-        <div class="col-md-10 mb-4 shadow p-3">
-          <h2>Add Tour</h2>
-          <form [formGroup]="tourForm" (ngSubmit)="addTour()" class="row g-3" name="tourForm">
-            <div class="col-md-6">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" formControlName="name" required>
-            </div>
-            <div class="col-md-6">
-              <label for="targetCountry" class="form-label">Target Country</label>
-              <input type="text" class="form-control" id="targetCountry" formControlName="targetCountry" required>
-            </div>
-            <div class="col-md-6">
-              <label for="startDate" class="form-label">Start Date</label>
-              <input type="date" class="form-control" id="startDate" formControlName="startDate" required>
-            </div>
-            <div class="col-md-6">
-              <label for="endDate" class="form-label">End Date</label>
-              <input type="date" class="form-control" id="endDate" formControlName="endDate" required>
-            </div>
-            <div class="col-md-4">
-              <label for="price" class="form-label">Price</label>
-              <div class="input-group">
-                <span class="input-group-text">PLN</span>
-                <input type="number" class="form-control" id="price" formControlName="price" required>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <label for="maxPeople" class="form-label">Max People</label>
-              <input type="number" class="form-control" id="maxPeople" formControlName="maxPeople" required>
-            </div>
-            <div class="col-md-4">
-              <label for="image" class="form-label">Image Link</label>
-              <input type="text" class="form-control" id="image" formControlName="image" required>
-            </div>
-            <div class="col-12">
-              <label for="description" class="form-label">Description</label>
-              <textarea class="form-control" id="description" formControlName="description" rows="3"
-                required></textarea>
-            </div>
-            <div class="col-12">
-              <button type="submit" [disabled]="tourForm.invalid" class="btn btn-primary">Add</button>
-            </div>
-          </form>
-        </div>
-
-      </div>
+      <app-tours-filter></app-tours-filter>
 
     </div>
   </div>
