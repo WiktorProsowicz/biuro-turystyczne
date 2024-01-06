@@ -1,24 +1,22 @@
-<div *ngIf="tours && tours.length" class="container">
-  <h2 class="mt-4 mb-3">Summary</h2>
-  <div class="card">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-4">
-          <p class="mb-1">Total Booked Seats:</p>
-          <h4>{{ getTotalBookedSeats() }}</h4>
-        </div>
-        <div class="col-md-4">
-          <p class="mb-1">Total Booked Tours:</p>
-          <h4>{{ getTotalBookedTours() }}</h4>
-        </div>
-        <div class="col-md-4">
-          <p class="mb-1">Total Price:</p>
-          <h4>{{ adjustToCurrency(getTotalPrice()) | currency: this.currencyCode }}</h4>
-        </div>
+<div class="container-fluid py-3 px-5 shadow">
+  <div class="row">
+    <div class="col-md-12 justify-content-center d-flex">
+      <div class="d-flex gap-4 justify-content-between w-100">
+        <strong class="mb-1">Total booked Seats:</strong>
+        <p>{{ getTotalBookedSeats() }}</p>
+      </div>
+    </div>
+    <div class="col-md-12 justify-content-center d-flex">
+      <div class="d-flex gap-4 justify-content-between w-100">
+        <strong class="mb-1">Total booked Tours:</strong>
+        <p>{{ getTotalBookedTours() }}</p>
+      </div>
+    </div>
+    <div class="col-md-12 justify-content-center d-flex">
+      <div class="d-flex gap-4 justify-content-between w-100">
+        <strong class="d-flex gap-4" class="mb-1">Total price:</strong>
+        <p>{{ adjustToCurrency(getTotalPrice()) | currency: getCurrency() }}</p>
       </div>
     </div>
   </div>
-</div>
-<div *ngIf="!tours || tours.length === 0" class="container">
-  <p class="mt-4">No tours available.</p>
 </div>

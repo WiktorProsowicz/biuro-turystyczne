@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { NgIf, NgFor } from '@angular/common';
-import { currencyToFactor } from '../shared/helpers';
+import { ToursBookingService } from '../../shared/services/tours-booking.service';
+import { CurrencyService } from '../../shared/services/currency.service';
 
 
 @Component({
@@ -12,23 +13,26 @@ import { currencyToFactor } from '../shared/helpers';
   styleUrl: './summary.component.css'
 })
 export class SummaryComponent {
-  @Input() toursBooking: any;
-  @Input() tours: any;
-  @Input() currencyCode: any;
+
+  constructor(private bookingService: ToursBookingService, private currencyService: CurrencyService) { }
 
   getTotalBookedSeats() {
-    return this.tours.reduce((cum: any, tour: any) => cum + (this.toursBooking[tour.id] || 0), 0);
+    return this.bookingService.getNumberOfBookedSeats();
   }
 
   getTotalBookedTours() {
-    return this.tours.filter((tour: any) => (this.toursBooking[tour.id] || 0) > 0).length;
+    return this.bookingService.getNumberOfBookedTours();
   }
 
   getTotalPrice() {
-    return this.tours.reduce((cum: any, tour: any) => cum + tour.price * (this.toursBooking[tour.id] || 0), 0);
+    return this.bookingService.getTotalPrice();
   }
 
   adjustToCurrency(price: number) {
-    return price / currencyToFactor[this.currencyCode];
+    return this.currencyService.convertPrice(price);
+  }
+
+  getCurrency() {
+    return this.currencyService.getCurrencyCode();
   }
 }
