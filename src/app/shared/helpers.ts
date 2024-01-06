@@ -1,18 +1,13 @@
-export const currencyToFactor: { [key: string]: number } = {
-  "PLN": 1,
-  "EUR": 4.5,
-  "USD": 4,
-  "GBP": 5
-};
-
 
 export function getTourStatus(tour: any) {
   const now = new Date();
+  const startDate = new Date(tour.startDate);
+  const endDate = new Date(tour.endDate);
 
-  if (tour.startDate > now) {
+  if (startDate > now) {
     return 'upcoming';
   }
-  else if (tour.endDate < now) {
+  else if (endDate < now) {
     return 'finished';
   }
   else {
