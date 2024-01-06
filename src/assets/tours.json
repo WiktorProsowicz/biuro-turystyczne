@@ -9,8 +9,8 @@
     "maxPeople": 12,
     "description": "Wycieczka po Paryżu dla 12 osób. Zwiedzanie Wieży Eiffla, Luwru, Katedry Notre-Dame i innych atrakcji. Noclegi w komfortowych hotelach, wyżywienie w tradycyjnych francuskich restauracjach.",
     "image": "https://picsum.photos/400/400?random=1",
-    "rating": 4,
-    "bookedSeats": 6
+    "rating": 4.0,
+    "bookedSeats": 2
   },
   {
     "id": 1,
@@ -22,7 +22,7 @@
     "maxPeople": 8,
     "description": "Wakacje na Hawajach dla 8 osób. Plaże, surfowanie, nurkowanie, wycieczki po wyspie. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
     "image": "https://picsum.photos/400/400?random=2",
-    "rating": 3,
+    "rating": 3.0,
     "bookedSeats": 3
   },
   {
@@ -35,7 +35,7 @@
     "maxPeople": 6,
     "description": "Safari w Kenii dla 6 osób. Obserwacja dzikich zwierząt w ich naturalnym środowisku, wizyta w Parku Narodowym Masai Mara. Noclegi w namiotach safari, wyżywienie w tradycyjnych afrykańskich restauracjach.",
     "image": "https://picsum.photos/400/400?random=3",
-    "rating": 5,
+    "rating": 5.0,
     "bookedSeats": 2
   },
   {
@@ -48,7 +48,7 @@
     "maxPeople": 10,
     "description": "Wycieczka po Rzymie dla 10 osób. Zwiedzanie Koloseum, Watykanu, Fontanny di Trevi i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych włoskich restauracjach.",
     "image": "https://picsum.photos/400/400?random=4",
-    "rating": 2,
+    "rating": 2.0,
     "bookedSeats": 5
   },
   {
@@ -61,7 +61,7 @@
     "maxPeople": 8,
     "description": "Wakacje na Bali dla 8 osób. Relaks na pięknych plażach, nurkowanie, wizyta w świątyniach. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
     "image": "https://picsum.photos/400/400?random=5",
-    "rating": 1,
+    "rating": 1.0,
     "bookedSeats": 7
   },
   {
@@ -74,7 +74,7 @@
     "maxPeople": 12,
     "description": "Wycieczka po Tokio dla 12 osób. Zwiedzanie Pałacu Cesarskiego, Świątyni Sensō-ji, dzielnicy Shibuya i innych atrakcji. Noclegi w nowoczesnych hotelach, wyżywienie w tradycyjnych japońskich restauracjach.",
     "image": "https://picsum.photos/400/400?random=6",
-    "rating": 4,
+    "rating": 4.0,
     "bookedSeats": 9
   },
   {
@@ -87,7 +87,7 @@
     "maxPeople": 10,
     "description": "Wakacje na Wyspach Kanaryjskich dla 10 osób. Słońce, plaże, wycieczki po wyspach. Noclegi w komfortowych hotelach, wyżywienie w restauracjach serwujących lokalne specjały.",
     "image": "https://picsum.photos/400/400?random=7",
-    "rating": 3,
+    "rating": 3.0,
     "bookedSeats": 4
   },
   {
@@ -100,7 +100,7 @@
     "maxPeople": 8,
     "description": "Wycieczka po Atenach dla 8 osób. Zwiedzanie Partenonu, Akropolu, Plaki i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych greckich restauracjach.",
     "image": "https://picsum.photos/400/400?random=8",
-    "rating": 5,
+    "rating": 5.0,
     "bookedSeats": 2
   },
   {
@@ -113,7 +113,7 @@
     "maxPeople": 6,
     "description": "Wakacje na Mauritiusie dla 6 osób. Białe plaże, turkusowe laguny, nurkowanie, wizyta w Parku Narodowym Black River Gorges. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
     "image": "https://picsum.photos/400/400?random=9",
-    "rating": 0,
+    "rating": 0.0,
     "bookedSeats": 1
   }
 ]
