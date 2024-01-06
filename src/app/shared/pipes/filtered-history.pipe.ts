@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { getTourStatus } from './shared/helpers';
+import { getTourStatus } from '../helpers';
 
 @Pipe({
   name: 'filteredHistory',

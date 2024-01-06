@@ -1,4 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Tour } from '../interfaces/tour';
+import { ToursFilter } from '../interfaces/tours-filter';
 
 @Pipe({
   name: 'filteredTours',
@@ -6,30 +8,48 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilteredToursPipe implements PipeTransform {
 
-  transform(tours: any[],
-    priceMin: number,
-    priceMax: number,
-    startDateFilter: Date,
-    endDateFilter: Date,
-    ratingsFilter: any,
-    destinationFilter: any): any[] {
+  transform(tours: Tour[], toursFilter: ToursFilter): Tour[] {
 
-    return tours?.filter(tour => {
+    console.log(toursFilter);
 
-      if (priceMin != null && tour.price < priceMin) return false;
+    return tours?.filter((tour: any) => {
 
-      if (priceMax != null && tour.price > priceMax) return false;
 
-      if (startDateFilter != null && tour.startDate < startDateFilter) return false;
+      if (toursFilter?.minPrice && tour.price < toursFilter.minPrice) {
+        return false;
+      }
 
-      if (endDateFilter != null && tour.endDate > endDateFilter) return false;
+      if (toursFilter?.maxPrice && tour.price > toursFilter.maxPrice) {
+        return false;
+      }
 
-      if (ratingsFilter[tour.rating] == false) return false;
+      if (toursFilter?.minRating && tour.rating < toursFilter.minRating) {
+        return false;
+      }
 
-      if (destinationFilter[tour.targetCountry] == false) return false;
+      if (toursFilter?.maxRating && tour.rating > toursFilter.maxRating) {
+        return false;
+      }
+
+      if (toursFilter?.destination) {
+        if (tour.targetCountry !== toursFilter.destination) {
+          return false;
+        }
+      }
+
+      if (toursFilter?.startDate) {
+        if (tour.startDate < toursFilter.startDate) {
+          return false;
+        }
+      }
+
+      if (toursFilter?.endDate) {
+        if (tour.endDate > toursFilter.endDate) {
+          return false;
+        }
+      }
 
       return true;
-
     });
 
   }
