@@ -1,0 +1,51 @@
+<app-menu></app-menu>
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-md-10 offset-1 mb-4 shadow p-3">
+      <h2 class="fw-light mb-5">Add Tour</h2>
+      <form [formGroup]="tourForm" (ngSubmit)="addTour()" class="row g-3" name="tourForm">
+        <div class="col-md-6">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name" required>
+        </div>
+        <div class="col-md-6">
+          <label for="targetCountry" class="form-label">Target Country</label>
+          <input type="text" class="form-control" id="targetCountry" formControlName="targetCountry" required>
+        </div>
+        <div class="col-md-6">
+          <label for="startDate" class="form-label">Start Date</label>
+          <input type="date" class="form-control" id="startDate" formControlName="startDate" required>
+        </div>
+        <div class="col-md-6">
+          <label for="endDate" class="form-label">End Date</label>
+          <input type="date" class="form-control" id="endDate" formControlName="endDate" required>
+        </div>
+        <div class="col-md-4">
+          <label for="price" class="form-label">Price</label>
+          <div class="input-group">
+            <span class="input-group-text">PLN</span>
+            <input type="number" class="form-control" id="price" formControlName="price" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="maxPeople" class="form-label">Max People</label>
+          <input type="number" class="form-control" id="maxPeople" formControlName="maxPeople" required>
+        </div>
+        <div class="col-md-4">
+          <label for="image" class="form-label">Image Link</label>
+          <input type="text" class="form-control" id="image" formControlName="image">
+        </div>
+        <div class="col-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" id="description" formControlName="description" rows="3"
+            required></textarea>
+        </div>
+        <div class="col-12">
+          <button type="submit" [disabled]="tourForm.invalid" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
