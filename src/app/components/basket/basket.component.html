@@ -1,34 +1,39 @@
-<div class="container border p-3">
-  <h2 class="mt-4 mb-3">Basket</h2>
-  <div *ngIf="tours && tours.length" class="card mb-4">
+<div class="container-fluid p-3">
 
-    <div class="card-body">
-      <div *ngFor="let info of getBookingInfo()" class="mb-3 d-flex align-items-center justify-content-between">
+  <div class="mb-4">
+
+    <div class="p-4 shadow">
+      <div *ngFor="let tour of getBookedTours() " class="mb-3 d-flex align-items-center justify-content-between">
         <div>
-          <h5>{{ info.tour.name }}</h5>
-          <p>Booked Seats: {{ info.bookedSeats || 0 }}</p>
-          <p>Total Price: {{ adjustToCurrency(info.price) | currency: currencyCode }}</p>
+          <h5>{{ tour.name }}</h5>
+          <p>Booked Seats: {{ getSeats(tour) }}</p>
+          <p>Total Price: {{ adjustToCurrency(getTotalPrice(tour)) | currency: getCurrency() }}</p>
 
-          <button class="btn btn-primary me-3" (click)="bookTour(info.tour)"
-            [disabled]="getTotalBookedSeats(info.tour) === info.tour.maxPeople"><i
-              class="bi bi-cart-plus-fill"></i></button>
-          <button class="btn btn-secondary" (click)="cancelTour(info.tour)"
-            [disabled]="(this.toursBooking[info.tour.id] || 0) == 0"><i class="bi bi-cart-x-fill"></i></button>
+          <button class="btn btn-primary me-3" (click)="bookTour(tour)"
+            [disabled]="getTotalBookedSeats(tour) === tour.maxPeople"><i class="bi bi-cart-plus-fill"></i></button>
+          <button class="btn btn-secondary" (click)="cancelTour(tour)" [disabled]="!hasBooking(tour)"><i
+              class="bi bi-cart-x-fill"></i></button>
         </div>
         <div>
           <div class="form-check">
             <form class="d-flex flex-column align-items-center">
-              <input class="form-check-input" type="checkbox" [checked]="getCheckBoxVal(info)" (change)="changeCheckboxes(info)"
-                id="basketCheckbox{{info.tour.id}}" name="basketCheckbox{{info.tour.id}}">
-              <label class="form-check-label" for="basketCheckbox{{info.tour.id}}">Choose Tour</label>
+              <input class="form-check-input" type="checkbox" [checked]="isChecked(tour)" (change)="changeCheck(tour)"
+                id="basketCheckbox{{tour.id}}" name="basketCheckbox{{tour.id}}">
             </form>
           </div>
         </div>
       </div>
+
+      <div *ngIf="getBookedTours().length == 0">
+        <p class="text-center m-0">No tours booked yet.</p>
+      </div>
+
+      <div *ngIf="getBookedTours().length > 0">
+        <button class="btn btn-primary mt-3 p-3" [disabled]="getCheckedTours().length == 0"
+          (click)="doCheckout()">Checkout</button>
+      </div>
     </div>
   </div>
 
-  <app-summary [tours]="tours" [currencyCode]="currencyCode" [toursBooking]="toursBooking"></app-summary>
 
-  <button class="btn btn-primary mt-3 p-3" [disabled]="!hasAnyBooking()" (click)="doCheckout()">Checkout</button>
 </div>
