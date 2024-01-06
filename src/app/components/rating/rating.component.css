@@ -1,0 +1,13 @@
+.rated {
+  color: #f9a825;
+}
+
+.star-rating {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+.rating-value span {
+  font-size: 18px;
+}

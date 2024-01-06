@@ -1,0 +1,23 @@
+<div class="tour-rating p-3 d-flex justify-content-center align-items-center">
+  <div class="star-rating">
+    <a (click)="rate(1)" class="link-secondary" [ngClass]="{'link-warning':current >= 1}">
+      <i class="bi bi-star-fill"></i>
+    </a>
+    <a (click)="rate(2)" class="link-secondary" [ngClass]="{'link-warning': current >= 2}">
+      <i class="bi bi-star-fill"></i>
+    </a>
+    <a (click)="rate(3)" class="link-secondary" [ngClass]="{'link-warning': current >= 3}">
+      <i class="bi bi-star-fill"></i>
+    </a>
+    <a (click)="rate(4)" class="link-secondary" [ngClass]="{'link-warning': current >= 4}">
+      <i class="bi bi-star-fill"></i>
+    </a>
+    <a (click)="rate(5)" class="link-secondary" [ngClass]="{'link-warning': current >= 5}">
+      <i class="bi bi-star-fill"></i>
+    </a>
+  </div>
+
+  <div class="rating-value ms-2">
+    <span class="badge bg-warning f-4">{{ average | number: '1.2' }}</span>
+  </div>
+</div>
