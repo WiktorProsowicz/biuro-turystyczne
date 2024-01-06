@@ -1,0 +1,41 @@
+#toursFilter input[type="range"] {
+  width: 100%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+#toursFilter input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background-color: #4c9aff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#toursFilter input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background-color: #4c9aff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#toursFilter input[type="range"]::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  background-color: #4c9aff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#toursFilter input[type="range"]::-webkit-slider-thumb:hover,
+#toursFilter input[type="range"]::-moz-range-thumb:hover,
+#toursFilter input[type="range"]::-ms-thumb:hover {
+  background-color: #007bff;
+}

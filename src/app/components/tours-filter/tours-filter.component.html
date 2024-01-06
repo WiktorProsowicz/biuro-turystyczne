@@ -1,0 +1,67 @@
+<div id="toursFilter" class="d-flex flex-column shadow p-5 gap-4 bg-white">
+
+  <form class="d-flex flex-column align-items-between gap-4">
+    <div>
+      <label for="minimalPriceRange" class="form-label">Minimal price: {{ minPriceConv() |
+        currency: currencyCode()
+        }}</label>
+      <input step="1" [min]="toursFilterService.getMinPrice()" [max]="toursFilterService.getMaxPrice()" type="range"
+        id="minimalPriceRange" name="minimalPriceRange" [(ngModel)]="toursFilterService.toursFilter.minPrice"
+        (change)="reload()">
+    </div>
+
+    <div>
+      <label for="maximalPriceRange" class="form-label">Maximal price: {{ maxPriceConv() |
+        currency: currencyCode()
+        }}</label>
+      <input step="1" [min]="toursFilterService.getMinPrice()" [max]="toursFilterService.getMaxPrice()" type="range"
+        id="maximalPriceRange" name="maximalPriceRange" [(ngModel)]="toursFilterService.toursFilter.maxPrice"
+        (change)="reload()">
+    </div>
+
+    <div>
+      <label for="dateRange" class="form-label">Date range:</label>
+
+      <div id="dateRange" class="d-flex align-items-center gap-3">
+        <input type="date" class="form-control" id="startDate" name="startDate"
+          [(ngModel)]="toursFilterService.toursFilter.startDate" (change)="reload()">
+        <span>-</span>
+        <input type="date" class="form-control" id="endDate" name="endDate"
+          [(ngModel)]="toursFilterService.toursFilter.endDate" (change)="reload()">
+      </div>
+    </div>
+  </form>
+
+  <form [formGroup]="destinationForm" class="d-flex flex-column align-items-between gap-4">
+    <div>
+      <label for="destinationSelect" class="form-label">Destination:</label>
+      <select class="form-select" id="destinationSelect" formControlName="destination" (change)="setDestination()">
+        <option id="destinationFilter">
+          All</option>
+        <option *ngFor="let destination of availableDestinations, index as i" id="destinationFilter{{i}}">
+          {{ destination}}
+        </option>
+      </select>
+    </div>
+  </form>
+
+  <form class="d-flex flex-column align-items-between gap-4">
+    <div>
+      <label for="minimalRatingRange" class="form-label">Minimal rating: {{ toursFilterService.toursFilter.minRating |
+        number : '1.2'
+        }}</label>
+      <input step="0.01" [min]="toursFilterService.getMinRating()" [max]="toursFilterService.getMaxRating()"
+        type="range" id="minimalRatingRange" name="minimalPriceRange"
+        [(ngModel)]="toursFilterService.toursFilter.minRating" (change)="reload()">
+    </div>
+
+    <div>
+      <label for="maximalRatingRange" class="form-label">Maximal rating: {{ toursFilterService.toursFilter.maxRating |
+        number: '1.2'
+        }}</label>
+      <input step="0.01" [min]="toursFilterService.getMinRating()" [max]="toursFilterService.getMaxRating()"
+        type="range" id="maximalRatingRange" name="maximalPriceRange"
+        [(ngModel)]="toursFilterService.toursFilter.maxRating" (change)="reload()">
+    </div>
+  </form>
+</div>
