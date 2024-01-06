@@ -23,11 +23,13 @@
       <label for="dateRange" class="form-label">Date range:</label>
 
       <div id="dateRange" class="d-flex align-items-center gap-3">
-        <input type="date" class="form-control" id="startDate" name="startDate"
-          [(ngModel)]="toursFilterService.toursFilter.startDate" (change)="reload()">
+        <input type="date" class="form-control" id="startDate" name="startDate" [min]="toursFilterService.getMinDate()"
+          [max]="toursFilterService.getMaxDate()" [(ngModel)]="toursFilterService.toursFilter.startDate"
+          (change)="reload()">
         <span>-</span>
-        <input type="date" class="form-control" id="endDate" name="endDate"
-          [(ngModel)]="toursFilterService.toursFilter.endDate" (change)="reload()">
+        <input type="date" class="form-control" id="endDate" name="endDate" [min]="toursFilterService.getMinDate()"
+          [max]="toursFilterService.getMaxDate()" [(ngModel)]="toursFilterService.toursFilter.endDate"
+          (change)="reload()">
       </div>
     </div>
   </form>

@@ -10,8 +10,6 @@ export class FilteredToursPipe implements PipeTransform {
 
   transform(tours: Tour[], toursFilter: ToursFilter): Tour[] {
 
-    console.log(toursFilter);
-
     return tours?.filter((tour: any) => {
 
 

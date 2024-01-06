@@ -20,7 +20,9 @@ export class ToursFilterService {
       minPrice: this.getMinPrice(),
       maxPrice: this.getMaxPrice(),
       minRating: this.getMinRating(),
-      maxRating: this.getMaxRating()
+      maxRating: this.getMaxRating(),
+      startDate: this.getMinDate(),
+      endDate: this.getMaxDate(),
     };
   }
 
@@ -39,4 +41,26 @@ export class ToursFilterService {
   getMaxRating() {
     return Math.max(...this.tours.map((tour: any) => tour.rating))
   }
+
+  getStartDates(): Date[] {
+    return this.tours.map((tour: any) => new Date(tour.startDate));
+  }
+
+  getEndDates(): Date[] {
+    return this.tours.map((tour: any) => new Date(tour.endDate));
+  }
+
+  getMinDate(): string {
+    if (this.getStartDates().length === 0) return '';
+
+    return this.getStartDates().reduce((min: any, date: any) => date < min ? date : min).toISOString().split('T')[0];
+  }
+
+  getMaxDate(): string {
+    if (this.getEndDates().length === 0) return '';
+
+    return this.getEndDates().reduce((max: any, date: any) => date > max ? date : max).toISOString().split('T')[0];
+  }
+
+
 }
