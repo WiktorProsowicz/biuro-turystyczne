@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white p-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home" routerLinkActive="active">BiuroTurystyczne</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tours" routerLinkActive="active">Tours</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/history" routerLinkActive="active">History</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/basket" routerLinkActive="active">Basket</a>
+        </li>
+
+        <li class="ms-3 nav-item">
+          <div class="dropdown" ngbDropdown>
+
+            <button class="btn btn-secondary dropdown-toggle" type="button" ngbDropdownToggle>
+              Currency <strong>{{this.currency.getCurrencyCode()}}</strong>
+            </button>
+
+            <ul class="dropdown-menu" ngbDropdownMenu>
+              <li ngbDropdownItem><button [ngClass]="{'text-primary': this.isCurrencyActive('EUR')}"
+                  class="dropdown-item" (click)="this.currency.setCurrencyCode('EUR')">EUR</button></li>
+
+              <li ngbDropdownItem><button [ngClass]="{'text-primary': this.isCurrencyActive('USD')}"
+                  class="dropdown-item" (click)="this.currency.setCurrencyCode('USD')">USD</button></li>
+
+              <li ngbDropdownItem><button [ngClass]="{'text-primary': this.isCurrencyActive('PLN')}"
+                  class="dropdown-item" (click)="this.currency.setCurrencyCode('PLN')">PLN</button></li>
+
+              <li ngbDropdownItem><button [ngClass]="{'text-primary': this.isCurrencyActive('GBP')}"
+                  class="dropdown-item" (click)="this.currency.setCurrencyCode('GBP')">GBP</button></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
