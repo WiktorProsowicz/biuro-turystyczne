@@ -2,3 +2,22 @@
 body {
   min-height: 100vh;
 }
+
+:root {
+  --custom: #43ab91;
+  --custom-dark: #2e8a6b;
+  --custom-light: #6ec7b0;
+}
+
+.bg-custom {
+  background-color: var(--custom);
+}
+
+.bg-custom-dark {
+  background-color: var(--custom-dark);
+}
+
+.bg-custom-light {
+  background-color: var(--custom-light);
+}
+

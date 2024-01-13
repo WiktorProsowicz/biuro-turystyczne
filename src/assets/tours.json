@@ -1,119 +1,663 @@
-[
-  {
-    "id": 0,
-    "name": "Wycieczka po Paryżu",
-    "targetCountry": "Francja",
-    "startDate": "2022-05-15",
-    "endDate": "2022-05-22",
-    "price": 8000,
-    "maxPeople": 12,
-    "description": "Wycieczka po Paryżu dla 12 osób. Zwiedzanie Wieży Eiffla, Luwru, Katedry Notre-Dame i innych atrakcji. Noclegi w komfortowych hotelach, wyżywienie w tradycyjnych francuskich restauracjach.",
-    "image": "https://picsum.photos/400/400?random=1",
-    "rating": 4.0,
-    "bookedSeats": 2
+{
+  "tours": {
+    "0": {
+      "name": "Wycieczka po Paryżu",
+      "targetCountry": "France",
+      "startDate": "2022-05-15",
+      "endDate": "2022-05-22",
+      "price": 8000,
+      "maxPeople": 12,
+      "description": "Wycieczka po Paryżu dla 12 osób. Zwiedzanie Wieży Eiffla, Luwru, Katedry Notre-Dame i innych atrakcji. Noclegi w komfortowych hotelach, wyżywienie w tradycyjnych francuskich restauracjach.",
+      "image": "https://picsum.photos/400/400?random=1"
+    },
+    "1": {
+      "name": "Wakacje na Hawajach",
+      "targetCountry": "United States",
+      "startDate": "2022-07-10",
+      "endDate": "2022-07-20",
+      "price": 15000,
+      "maxPeople": 8,
+      "description": "Wakacje na Hawajach dla 8 osób. Plaże, surfowanie, nurkowanie, wycieczki po wyspie. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
+      "image": "https://picsum.photos/400/400?random=2"
+    },
+    "2": {
+      "name": "Safari w Kenii",
+      "targetCountry": "Kenya",
+      "startDate": "2022-09-01",
+      "endDate": "2022-09-10",
+      "price": 12000,
+      "maxPeople": 6,
+      "description": "Safari w Kenii dla 6 osób. Obserwacja dzikich zwierząt w ich naturalnym środowisku, wizyta w Parku Narodowym Masai Mara. Noclegi w namiotach safari, wyżywienie w tradycyjnych afrykańskich restauracjach.",
+      "image": "https://picsum.photos/400/400?random=3"
+    },
+    "3": {
+      "name": "Wycieczka po Rzymie",
+      "targetCountry": "Italy",
+      "startDate": "2022-06-05",
+      "endDate": "2022-06-12",
+      "price": 7000,
+      "maxPeople": 10,
+      "description": "Wycieczka po Rzymie dla 10 osób. Zwiedzanie Koloseum, Watykanu, Fontanny di Trevi i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych włoskich restauracjach.",
+      "image": "https://picsum.photos/400/400?random=4"
+    },
+    "4": {
+      "name": "Wakacje na Bali",
+      "targetCountry": "Indonesia",
+      "startDate": "2022-08-15",
+      "endDate": "2022-08-25",
+      "price": 10000,
+      "maxPeople": 8,
+      "description": "Wakacje na Bali dla 8 osób. Relaks na pięknych plażach, nurkowanie, wizyta w świątyniach. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
+      "image": "https://picsum.photos/400/400?random=5"
+    },
+    "5": {
+      "name": "Wycieczka po Tokio",
+      "targetCountry": "Japan",
+      "startDate": "2022-10-01",
+      "endDate": "2022-10-08",
+      "price": 9000,
+      "maxPeople": 12,
+      "description": "Wycieczka po Tokio dla 12 osób. Zwiedzanie Pałacu Cesarskiego, Świątyni Sensō-ji, dzielnicy Shibuya i innych atrakcji. Noclegi w nowoczesnych hotelach, wyżywienie w tradycyjnych japońskich restauracjach.",
+      "image": "https://picsum.photos/400/400?random=6"
+    },
+    "6": {
+      "name": "Wakacje na Wyspach Kanaryjskich",
+      "targetCountry": "Spain",
+      "startDate": "2022-11-15",
+      "endDate": "2022-11-25",
+      "price": 6000,
+      "maxPeople": 10,
+      "description": "Wakacje na Wyspach Kanaryjskich dla 10 osób. Słońce, plaże, wycieczki po wyspach. Noclegi w komfortowych hotelach, wyżywienie w restauracjach serwujących lokalne specjały.",
+      "image": "https://picsum.photos/400/400?random=7"
+    },
+    "7": {
+      "name": "Wycieczka po Atenach",
+      "targetCountry": "Greece",
+      "startDate": "2022-07-01",
+      "endDate": "2022-07-08",
+      "price": 7500,
+      "maxPeople": 8,
+      "description": "Wycieczka po Atenach dla 8 osób. Zwiedzanie Partenonu, Akropolu, Plaki i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych greckich restauracjach.",
+      "image": "https://picsum.photos/400/400?random=8"
+    },
+    "8": {
+      "name": "Wakacje na Mauritiusie",
+      "targetCountry": "Mauritius",
+      "startDate": "2022-09-15",
+      "endDate": "2022-09-25",
+      "price": 12000,
+      "maxPeople": 6,
+      "description": "Wakacje na Mauritiusie dla 6 osób. Białe plaże, turkusowe laguny, nurkowanie, wizyta w Parku Narodowym Black River Gorges. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
+      "image": "https://picsum.photos/400/400?random=9"
+    }
   },
-  {
-    "id": 1,
-    "name": "Wakacje na Hawajach",
-    "targetCountry": "Stany Zjednoczone",
-    "startDate": "2022-07-10",
-    "endDate": "2022-07-20",
-    "price": 15000,
-    "maxPeople": 8,
-    "description": "Wakacje na Hawajach dla 8 osób. Plaże, surfowanie, nurkowanie, wycieczki po wyspie. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
-    "image": "https://picsum.photos/400/400?random=2",
-    "rating": 3.0,
-    "bookedSeats": 3
+  "users": {
+    "0": {
+      "nick": "Jan"
+    },
+    "1": {
+      "nick": "Anna"
+    },
+    "2": {
+      "nick": "Piotr"
+    },
+    "3": {
+      "nick": "Maria"
+    },
+    "4": {
+      "nick": "Tomasz"
+    },
+    "5": {
+      "nick": "Katarzyna"
+    },
+    "6": {
+      "nick": "Michał"
+    },
+    "7": {
+      "nick": "Alicja"
+    },
+    "8": {
+      "nick": "Grzegorz"
+    }
   },
-  {
-    "id": 2,
-    "name": "Safari w Kenii",
-    "targetCountry": "Kenia",
-    "startDate": "2022-09-01",
-    "endDate": "2022-09-10",
-    "price": 12000,
-    "maxPeople": 6,
-    "description": "Safari w Kenii dla 6 osób. Obserwacja dzikich zwierząt w ich naturalnym środowisku, wizyta w Parku Narodowym Masai Mara. Noclegi w namiotach safari, wyżywienie w tradycyjnych afrykańskich restauracjach.",
-    "image": "https://picsum.photos/400/400?random=3",
-    "rating": 5.0,
-    "bookedSeats": 2
+  "ratings": {
+    "0": {
+      "userId": 0,
+      "tourId": 0,
+      "rating": 3
+    },
+    "1": {
+      "userId": 0,
+      "tourId": 1,
+      "rating": 4
+    },
+    "2": {
+      "userId": 0,
+      "tourId": 2,
+      "rating": 5
+    },
+    "3": {
+      "userId": 0,
+      "tourId": 3,
+      "rating": 4
+    },
+    "4": {
+      "userId": 0,
+      "tourId": 4,
+      "rating": 5
+    },
+    "5": {
+      "userId": 1,
+      "tourId": 0,
+      "rating": 4
+    },
+    "6": {
+      "userId": 1,
+      "tourId": 1,
+      "rating": 5
+    },
+    "7": {
+      "userId": 1,
+      "tourId": 2,
+      "rating": 3
+    },
+    "8": {
+      "userId": 1,
+      "tourId": 3,
+      "rating": 4
+    },
+    "9": {
+      "userId": 1,
+      "tourId": 4,
+      "rating": 5
+    },
+    "10": {
+      "userId": 2,
+      "tourId": 0,
+      "rating": 5
+    },
+    "11": {
+      "userId": 2,
+      "tourId": 1,
+      "rating": 4
+    },
+    "12": {
+      "userId": 2,
+      "tourId": 2,
+      "rating": 5
+    },
+    "13": {
+      "userId": 2,
+      "tourId": 3,
+      "rating": 3
+    },
+    "14": {
+      "userId": 2,
+      "tourId": 4,
+      "rating": 4
+    },
+    "15": {
+      "userId": 3,
+      "tourId": 0,
+      "rating": 4
+    },
+    "16": {
+      "userId": 3,
+      "tourId": 1,
+      "rating": 5
+    },
+    "17": {
+      "userId": 3,
+      "tourId": 2,
+      "rating": 4
+    },
+    "18": {
+      "userId": 3,
+      "tourId": 3,
+      "rating": 5
+    },
+    "19": {
+      "userId": 3,
+      "tourId": 4,
+      "rating": 3
+    },
+    "20": {
+      "userId": 4,
+      "tourId": 0,
+      "rating": 5
+    },
+    "21": {
+      "userId": 4,
+      "tourId": 1,
+      "rating": 4
+    },
+    "22": {
+      "userId": 4,
+      "tourId": 2,
+      "rating": 5
+    },
+    "23": {
+      "userId": 4,
+      "tourId": 3,
+      "rating": 4
+    },
+    "24": {
+      "userId": 4,
+      "tourId": 4,
+      "rating": 5
+    },
+    "25": {
+      "userId": 5,
+      "tourId": 0,
+      "rating": 4
+    },
+    "26": {
+      "userId": 5,
+      "tourId": 1,
+      "rating": 5
+    },
+    "27": {
+      "userId": 5,
+      "tourId": 2,
+      "rating": 4
+    },
+    "28": {
+      "userId": 5,
+      "tourId": 3,
+      "rating": 5
+    },
+    "29": {
+      "userId": 5,
+      "tourId": 4,
+      "rating": 4
+    },
+    "30": {
+      "userId": 6,
+      "tourId": 0,
+      "rating": 5
+    },
+    "31": {
+      "userId": 6,
+      "tourId": 1,
+      "rating": 4
+    },
+    "32": {
+      "userId": 6,
+      "tourId": 2,
+      "rating": 5
+    },
+    "33": {
+      "userId": 6,
+      "tourId": 3,
+      "rating": 4
+    },
+    "34": {
+      "userId": 6,
+      "tourId": 4,
+      "rating": 5
+    },
+    "35": {
+      "userId": 7,
+      "tourId": 0,
+      "rating": 4
+    },
+    "36": {
+      "userId": 7,
+      "tourId": 1,
+      "rating": 5
+    },
+    "37": {
+      "userId": 7,
+      "tourId": 2,
+      "rating": 4
+    },
+    "38": {
+      "userId": 7,
+      "tourId": 3,
+      "rating": 5
+    },
+    "39": {
+      "userId": 7,
+      "tourId": 4,
+      "rating": 4
+    },
+    "40": {
+      "userId": 8,
+      "tourId": 0,
+      "rating": 5
+    },
+    "41": {
+      "userId": 8,
+      "tourId": 1,
+      "rating": 4
+    },
+    "42": {
+      "userId": 8,
+      "tourId": 2,
+      "rating": 5
+    },
+    "43": {
+      "userId": 8,
+      "tourId": 3,
+      "rating": 4
+    },
+    "44": {
+      "userId": 8,
+      "tourId": 4,
+      "rating": 5
+    }
   },
-  {
-    "id": 3,
-    "name": "Wycieczka po Rzymie",
-    "targetCountry": "Włochy",
-    "startDate": "2022-06-05",
-    "endDate": "2022-06-12",
-    "price": 7000,
-    "maxPeople": 10,
-    "description": "Wycieczka po Rzymie dla 10 osób. Zwiedzanie Koloseum, Watykanu, Fontanny di Trevi i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych włoskich restauracjach.",
-    "image": "https://picsum.photos/400/400?random=4",
-    "rating": 2.0,
-    "bookedSeats": 5
+  "opinions": {
+    "0": {
+      "userId": 0,
+      "tourId": 0,
+      "dateCreated": "2021-05-15",
+      "opinion": "Wycieczka bardzo udana, polecam!",
+      "topic": "Nieźle nieźle"
+    },
+    "1": {
+      "userId": 0,
+      "tourId": 0,
+      "dateCreated": "2022-05-15",
+      "opinion": "Wycieczka nieudana, niepolecam!",
+      "date": "2021-05-15",
+      "topic": "Źle źle"
+    },
+    "2": {
+      "userId": 1,
+      "tourId": 1,
+      "dateCreated": "2021-06-20",
+      "opinion": "Niesamowita wycieczka, świetne atrakcje!",
+      "topic": "Super wycieczka"
+    },
+    "3": {
+      "userId": 1,
+      "tourId": 1,
+      "dateCreated": "2022-07-10",
+      "opinion": "Bardzo miła obsługa, polecam!",
+      "topic": "Wspaniała obsługa"
+    },
+    "4": {
+      "userId": 2,
+      "tourId": 2,
+      "dateCreated": "2021-08-05",
+      "opinion": "Wycieczka spełniła moje oczekiwania, piękne widoki!",
+      "topic": "Niesamowite widoki"
+    },
+    "5": {
+      "userId": 2,
+      "tourId": 2,
+      "dateCreated": "2022-09-25",
+      "opinion": "Jedzenie było przepyszne, polecam spróbować!",
+      "topic": "Smaczne jedzenie"
+    },
+    "6": {
+      "userId": 3,
+      "tourId": 3,
+      "dateCreated": "2021-10-12",
+      "opinion": "Wycieczka bardzo interesująca, dużo się nauczyłem!",
+      "topic": "Edukacyjna wycieczka"
+    },
+    "7": {
+      "userId": 3,
+      "tourId": 3,
+      "dateCreated": "2022-11-08",
+      "opinion": "Pogoda była idealna, nie mogłem prosić o lepsze warunki!",
+      "topic": "Doskonała pogoda"
+    },
+    "8": {
+      "userId": 4,
+      "tourId": 4,
+      "dateCreated": "2021-12-01",
+      "opinion": "Wycieczka pełna przygód, niezapomniane chwile!",
+      "topic": "Przygoda życia"
+    },
+    "9": {
+      "userId": 4,
+      "tourId": 4,
+      "dateCreated": "2023-01-20",
+      "opinion": "Noclegi były bardzo wygodne, czułem się jak w domu!",
+      "topic": "Komfortowe noclegi"
+    },
+    "10": {
+      "userId": 5,
+      "tourId": 0,
+      "dateCreated": "2022-02-14",
+      "opinion": "Wycieczka zorganizowana perfekcyjnie, wszystko było dopięte na ostatni guzik!",
+      "topic": "Doskonała organizacja"
+    },
+    "11": {
+      "userId": 5,
+      "tourId": 0,
+      "dateCreated": "2023-03-30",
+      "opinion": "Wspaniała atmosfera, świetnie się bawiłem!",
+      "topic": "Niesamowita atmosfera"
+    },
+    "12": {
+      "userId": 6,
+      "tourId": 1,
+      "dateCreated": "2022-04-18",
+      "opinion": "Wycieczka dla prawdziwych podróżników, polecam tym, którzy lubią odkrywać nowe miejsca!",
+      "topic": "Dla podróżników"
+    },
+    "13": {
+      "userId": 6,
+      "tourId": 1,
+      "dateCreated": "2023-05-05",
+      "opinion": "Wycieczka pełna niespodzianek, nie wiedziałem czego się spodziewać!",
+      "topic": "Pełna niespodzianek"
+    },
+    "14": {
+      "userId": 7,
+      "tourId": 2,
+      "dateCreated": "2022-06-22",
+      "opinion": "Wycieczka dla miłośników przyrody, piękne krajobrazy!",
+      "topic": "Dla miłośników przyrody"
+    },
+    "15": {
+      "userId": 7,
+      "tourId": 2,
+      "dateCreated": "2023-07-10",
+      "opinion": "Wspaniała fauna i flora, niezapomniane doświadczenie!",
+      "topic": "Piękna fauna i flora"
+    },
+    "16": {
+      "userId": 8,
+      "tourId": 3,
+      "dateCreated": "2022-08-15",
+      "opinion": "Wycieczka dla fanów historii, dużo ciekawych miejsc do zwiedzania!",
+      "topic": "Dla fanów historii"
+    },
+    "17": {
+      "userId": 8,
+      "tourId": 3,
+      "dateCreated": "2023-09-01",
+      "opinion": "Przewodnik był bardzo kompetentny, opowiadał ciekawe historie!",
+      "topic": "Kompetentny przewodnik"
+    },
+    "18": {
+      "userId": 0,
+      "tourId": 4,
+      "dateCreated": "2022-10-20",
+      "opinion": "Wycieczka dla osób aktywnych, dużo sportowych atrakcji!",
+      "topic": "Dla osób aktywnych"
+    },
+    "19": {
+      "userId": 0,
+      "tourId": 4,
+      "dateCreated": "2023-11-05",
+      "opinion": "Wspaniałe wspomnienia, chciałbym wrócić tam jeszcze raz!",
+      "topic": "Niesamowite wspomnienia"
+    },
+    "20": {
+      "userId": 1,
+      "tourId": 0,
+      "dateCreated": "2022-12-12",
+      "opinion": "Wycieczka zaskoczyła mnie pozytywnie, polecam wszystkim!",
+      "topic": "Pozytywne zaskoczenie"
+    },
+    "21": {
+      "userId": 1,
+      "tourId": 0,
+      "dateCreated": "2023-01-30",
+      "opinion": "Wspaniałe miejsce, które warto odwiedzić!",
+      "topic": "Warto odwiedzić"
+    },
+    "22": {
+      "userId": 2,
+      "tourId": 1,
+      "dateCreated": "2023-02-28",
+      "opinion": "Wycieczka dla osób ceniących kulturę, dużo ciekawych miejsc do zwiedzania!",
+      "topic": "Dla miłośników kultury"
+    },
+    "23": {
+      "userId": 2,
+      "tourId": 1,
+      "dateCreated": "2023-03-15",
+      "opinion": "Wspaniałe doświadczenie, które na długo pozostanie w mojej pamięci!",
+      "topic": "Niezapomniane doświadczenie"
+    },
+    "24": {
+      "userId": 3,
+      "tourId": 2,
+      "dateCreated": "2023-04-10",
+      "opinion": "Wycieczka dla osób szukających relaksu, idealne miejsce na wypoczynek!",
+      "topic": "Dla osób szukających relaksu"
+    },
+    "25": {
+      "userId": 3,
+      "tourId": 2,
+      "dateCreated": "2023-05-01",
+      "opinion": "Wspaniałe plaże, czysta woda, raj na ziemi!",
+      "topic": "Raj na ziemi"
+    },
+    "26": {
+      "userId": 4,
+      "tourId": 3,
+      "dateCreated": "2023-06-20",
+      "opinion": "Wycieczka dla miłośników architektury, piękne budowle!",
+      "topic": "Dla miłośników architektury"
+    },
+    "27": {
+      "userId": 4,
+      "tourId": 3,
+      "dateCreated": "2023-07-10",
+      "opinion": "Wspaniałe wieczory, nocne podziwianie zabytków!",
+      "topic": "Nocne podziwianie zabytków"
+    },
+    "28": {
+      "userId": 5,
+      "tourId": 4,
+      "dateCreated": "2023-08-15",
+      "opinion": "Wycieczka dla osób poszukujących egzotyki, niezwykłe miejsca!",
+      "topic": "Dla poszukujących egzotyki"
+    },
+    "29": {
+      "userId": 5,
+      "tourId": 4,
+      "dateCreated": "2023-09-01",
+      "opinion": "Wspaniałe doświadczenie kulinarnie, polecam spróbować lokalnych potraw!",
+      "topic": "Lokalne smaki"
+    }
   },
-  {
-    "id": 4,
-    "name": "Wakacje na Bali",
-    "targetCountry": "Indonezja",
-    "startDate": "2022-08-15",
-    "endDate": "2022-08-25",
-    "price": 10000,
-    "maxPeople": 8,
-    "description": "Wakacje na Bali dla 8 osób. Relaks na pięknych plażach, nurkowanie, wizyta w świątyniach. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
-    "image": "https://picsum.photos/400/400?random=5",
-    "rating": 1.0,
-    "bookedSeats": 7
+  "purchases": {
+    "0": {
+      "userId": 0,
+      "tourId": 0,
+      "seats": 2,
+      "date": "2021-05-15"
+    },
+    "1": {
+      "userId": 1,
+      "tourId": 1,
+      "seats": 3,
+      "date": "2021-05-15"
+    },
+    "2": {
+      "userId": 2,
+      "tourId": 2,
+      "seats": 4,
+      "date": "2021-05-15"
+    },
+    "3": {
+      "userId": 3,
+      "tourId": 3,
+      "seats": 5,
+      "date": "2021-05-15"
+    }
   },
-  {
-    "id": 5,
-    "name": "Wycieczka po Tokio",
-    "targetCountry": "Japonia",
-    "startDate": "2022-10-01",
-    "endDate": "2022-10-08",
-    "price": 9000,
-    "maxPeople": 12,
-    "description": "Wycieczka po Tokio dla 12 osób. Zwiedzanie Pałacu Cesarskiego, Świątyni Sensō-ji, dzielnicy Shibuya i innych atrakcji. Noclegi w nowoczesnych hotelach, wyżywienie w tradycyjnych japońskich restauracjach.",
-    "image": "https://picsum.photos/400/400?random=6",
-    "rating": 4.0,
-    "bookedSeats": 9
-  },
-  {
-    "id": 6,
-    "name": "Wakacje na Wyspach Kanaryjskich",
-    "targetCountry": "Hiszpania",
-    "startDate": "2022-11-15",
-    "endDate": "2022-11-25",
-    "price": 6000,
-    "maxPeople": 10,
-    "description": "Wakacje na Wyspach Kanaryjskich dla 10 osób. Słońce, plaże, wycieczki po wyspach. Noclegi w komfortowych hotelach, wyżywienie w restauracjach serwujących lokalne specjały.",
-    "image": "https://picsum.photos/400/400?random=7",
-    "rating": 3.0,
-    "bookedSeats": 4
-  },
-  {
-    "id": 7,
-    "name": "Wycieczka po Atenach",
-    "targetCountry": "Grecja",
-    "startDate": "2022-07-01",
-    "endDate": "2022-07-08",
-    "price": 7500,
-    "maxPeople": 8,
-    "description": "Wycieczka po Atenach dla 8 osób. Zwiedzanie Partenonu, Akropolu, Plaki i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych greckich restauracjach.",
-    "image": "https://picsum.photos/400/400?random=8",
-    "rating": 5.0,
-    "bookedSeats": 2
-  },
-  {
-    "id": 8,
-    "name": "Wakacje na Mauritiusie",
-    "targetCountry": "Mauritius",
-    "startDate": "2022-09-15",
-    "endDate": "2022-09-25",
-    "price": 12000,
-    "maxPeople": 6,
-    "description": "Wakacje na Mauritiusie dla 6 osób. Białe plaże, turkusowe laguny, nurkowanie, wizyta w Parku Narodowym Black River Gorges. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
-    "image": "https://picsum.photos/400/400?random=9",
-    "rating": 0.0,
-    "bookedSeats": 1
+  "details": {
+    "0": {
+      "description": "Wycieczka po Paryżu dla 12 osób. Zwiedzanie Wieży Eiffla, Luwru, Katedry Notre-Dame i innych atrakcji. Noclegi w komfortowych hotelach, wyżywienie w tradycyjnych francuskich restauracjach. Wycieczka po Paryżu dla 12 osób. Zwiedzanie Wieży Eiffla, Luwru, Katedry Notre-Dame i innych atrakcji. Noclegi w komfortowych hotelach, wyżywienie w tradycyjnych francuskich restauracjach. Wycieczka po Paryżu dla 12 osób. Zwiedzanie Wieży Eiffla, Luwru, Katedry Notre-Dame i innych atrakcji. Noclegi w komfortowych hotelach, wyżywienie w tradycyjnych francuskich restauracjach.",
+      "images": [
+        "https://picsum.photos/400/400?random=10",
+        "https://picsum.photos/400/400?random=11",
+        "https://picsum.photos/400/400?random=12"
+      ]
+    },
+    "1": {
+      "description": "Wakacje na Hawajach dla 8 osób. Plaże, surfowanie, nurkowanie, wycieczki po wyspie. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały. Wakacje na Hawajach dla 8 osób. Plaże, surfowanie, nurkowanie, wycieczki po wyspie. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały. Wakacje na Hawajach dla 8 osób. Plaże, surfowanie, nurkowanie, wycieczki po wyspie. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
+      "images": [
+        "https://picsum.photos/400/400?random=13",
+        "https://picsum.photos/400/400?random=14",
+        "https://picsum.photos/400/400?random=15"
+      ]
+    },
+    "2": {
+      "description": "Safari w Kenii dla 6 osób. Obserwacja dzikich zwierząt w ich naturalnym środowisku, wizyta w Parku Narodowym Masai Mara. Noclegi w namiotach safari, wyżywienie w tradycyjnych afrykańskich restauracjach. Safari w Kenii dla 6 osób. Obserwacja dzikich zwierząt w ich naturalnym środowisku, wizyta w Parku Narodowym Masai Mara. Noclegi w namiotach safari, wyżywienie w tradycyjnych afrykańskich restauracjach. Safari w Kenii dla 6 osób. Obserwacja dzikich zwierząt w ich naturalnym środowisku, wizyta w Parku Narodowym Masai Mara. Noclegi w namiotach safari, wyżywienie w tradycyjnych afrykańskich restauracjach.",
+      "images": [
+        "https://picsum.photos/400/400?random=16",
+        "https://picsum.photos/400/400?random=17",
+        "https://picsum.photos/400/400?random=18"
+      ]
+    },
+    "3": {
+      "description": "Wycieczka po Rzymie dla 10 osób. Zwiedzanie Koloseum, Watykanu, Fontanny di Trevi i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych włoskich restauracjach. Wycieczka po Rzymie dla 10 osób. Zwiedzanie Koloseum, Watykanu, Fontanny di Trevi i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych włoskich restauracjach. Wycieczka po Rzymie dla 10 osób. Zwiedzanie Koloseum, Watykanu, Fontanny di Trevi i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych włoskich restauracjach.",
+      "images": [
+        "https://picsum.photos/400/400?random=19",
+        "https://picsum.photos/400/400?random=20",
+        "https://picsum.photos/400/400?random=21"
+      ]
+    },
+    "4": {
+      "description": "Wakacje na Bali dla 8 osób. Relaks na pięknych plażach, nurkowanie, wizyta w świątyniach. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały. Wakacje na Bali dla 8 osób. Relaks na pięknych plażach, nurkowanie, wizyta w świątyniach. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały. Wakacje na Bali dla 8 osób. Relaks na pięknych plażach, nurkowanie, wizyta w świątyniach. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
+      "images": [
+        "https://picsum.photos/400/400?random=22",
+        "https://picsum.photos/400/400?random=23",
+        "https://picsum.photos/400/400?random=24"
+      ]
+    },
+    "5": {
+      "description": "Wycieczka po Tokio dla 12 osób. Zwiedzanie Pałacu Cesarskiego, Świątyni Sensō-ji, dzielnicy Shibuya i innych atrakcji. Noclegi w nowoczesnych hotelach, wyżywienie w tradycyjnych japońskich restauracjach. Wycieczka po Tokio dla 12 osób. Zwiedzanie Pałacu Cesarskiego, Świątyni Sensō-ji, dzielnicy Shibuya i innych atrakcji. Noclegi w nowoczesnych hotelach, wyżywienie w tradycyjnych japońskich restauracjach. Wycieczka po Tokio dla 12 osób. Zwiedzanie Pałacu Cesarskiego, Świątyni Sensō-ji, dzielnicy Shibuya i innych atrakcji. Noclegi w nowoczesnych hotelach, wyżywienie w tradycyjnych japońskich restauracjach.",
+      "images": [
+        "https://picsum.photos/400/400?random=25",
+        "https://picsum.photos/400/400?random=26",
+        "https://picsum.photos/400/400?random=27"
+      ]
+    },
+    "6": {
+      "description": "Wakacje na Wyspach Kanaryjskich dla 10 osób. Słońce, plaże, wycieczki po wyspach. Noclegi w komfortowych hotelach, wyżywienie w restauracjach serwujących lokalne specjały. Wakacje na Wyspach Kanaryjskich dla 10 osób. Słońce, plaże, wycieczki po wyspach. Noclegi w komfortowych hotelach, wyżywienie w restauracjach serwujących lokalne specjały. Wakacje na Wyspach Kanaryjskich dla 10 osób. Słońce, plaże, wycieczki po wyspach. Noclegi w komfortowych hotelach, wyżywienie w restauracjach serwujących lokalne specjały.",
+      "images": [
+        "https://picsum.photos/400/400?random=28",
+        "https://picsum.photos/400/400?random=29",
+        "https://picsum.photos/400/400?random=30"
+      ]
+    },
+    "7": {
+      "description": "Wycieczka po Atenach dla 8 osób. Zwiedzanie Partenonu, Akropolu, Plaki i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych greckich restauracjach. Wycieczka po Atenach dla 8 osób. Zwiedzanie Partenonu, Akropolu, Plaki i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych greckich restauracjach. Wycieczka po Atenach dla 8 osób. Zwiedzanie Partenonu, Akropolu, Plaki i innych zabytków. Noclegi w urokliwych hotelach, wyżywienie w tradycyjnych greckich restauracjach.",
+      "images": [
+        "https://picsum.photos/400/400?random=31",
+        "https://picsum.photos/400/400?random=32",
+        "https://picsum.photos/400/400?random=33"
+      ]
+    },
+    "8": {
+      "description": "Wakacje na Mauritiusie dla 6 osób. Białe plaże, turkusowe laguny, nurkowanie, wizyta w Parku Narodowym Black River Gorges. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały. Wakacje na Mauritiusie dla 6 osób. Białe plaże, turkusowe laguny, nurkowanie, wizyta w Parku Narodowym Black River Gorges. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały. Wakacje na Mauritiusie dla 6 osób. Białe plaże, turkusowe laguny, nurkowanie, wizyta w Parku Narodowym Black River Gorges. Noclegi w luksusowych resortach, wyżywienie w restauracjach serwujących lokalne specjały.",
+      "images": [
+        "https://picsum.photos/400/400?random=34",
+        "https://picsum.photos/400/400?random=35",
+        "https://picsum.photos/400/400?random=36"
+      ]
+    }
   }
-]
+}

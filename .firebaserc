@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "biuro-turystyczne-190a7": {
+      "hosting": {
+        "biuro-turystyczne": [
+          "biuro-turystyczne-190a7"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "biuro-turystyczne-190a7"
+  }
+}

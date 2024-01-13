@@ -99,6 +99,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "biuro-turystyczne:build:production",
+              "serveTarget": "biuro-turystyczne:serve:production"
+            },
+            "development": {
+              "buildTarget": "biuro-turystyczne:build:development",
+              "serveTarget": "biuro-turystyczne:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
