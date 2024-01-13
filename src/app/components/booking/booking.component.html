@@ -1,0 +1,6 @@
+<div>
+  <button class="btn bg-custom-dark btn-secondary text-white me-3" (click)="bookTour(tour)"
+    [disabled]="getTotalBookedSeats(tour) === tour.maxPeople"><i class="bi bi-cart-plus-fill"></i></button>
+  <button class="btn btn-secondary" (click)="cancelTour(tour)" [disabled]="!hasBooking(tour)"><i
+      class="bi bi-cart-x-fill"></i></button>
+</div>

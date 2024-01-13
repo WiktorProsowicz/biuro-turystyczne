@@ -3,16 +3,17 @@ import { SummaryComponent } from '../summary/summary.component';
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToursBookingService } from '../../shared/services/tours-booking.service';
-import { HistoryService } from '../../shared/services/history.service';
 import { CurrencyService } from '../../shared/services/currency.service';
 import { Tour } from '../../shared/interfaces/tour';
 import { ToursService } from '../../shared/services/tours.service';
+import { PurchasingService } from '../../shared/services/purchasing.service';
+import { BookingComponent } from '../booking/booking.component';
 
 
 @Component({
   selector: 'app-basket',
   standalone: true,
-  imports: [SummaryComponent, CurrencyPipe, NgFor, NgIf, FormsModule],
+  imports: [SummaryComponent, CurrencyPipe, NgFor, NgIf, FormsModule, BookingComponent],
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.css'
 })
@@ -20,16 +21,8 @@ export class BasketComponent {
 
   checkBoxes: { [key: number]: boolean } = {};
 
-  constructor(private bookingService: ToursBookingService, private historyService: HistoryService, private currencyService: CurrencyService, private toursService: ToursService) {
+  constructor(private bookingService: ToursBookingService, private purchasingService: PurchasingService, private currencyService: CurrencyService, private toursService: ToursService) {
 
-  }
-
-  bookTour(tour: any) {
-    this.bookingService.bookTour(tour, 1);
-  }
-
-  cancelTour(tour: any) {
-    this.bookingService.cancelTour(tour, 1);
   }
 
   hasBooking(tour: Tour) {
@@ -47,7 +40,7 @@ export class BasketComponent {
   doCheckout() {
 
     this.getCheckedTours().forEach((tour: Tour) => {
-      this.historyService.addPurchase({
+      this.purchasingService.addPurchase({
         tour: tour,
         date: new Date().toISOString(),
         seats: this.bookingService.getTourBooking(tour)
@@ -97,7 +90,5 @@ export class BasketComponent {
     return this.currencyService.getCurrencyCode();
   }
 
-  getTotalBookedSeats(tour: Tour) {
-    return this.bookingService.getTourBooking(tour) + tour.bookedSeats;
-  }
+
 }

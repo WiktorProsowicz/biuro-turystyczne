@@ -9,10 +9,7 @@
           <p>Booked Seats: {{ getSeats(tour) }}</p>
           <p>Total Price: {{ adjustToCurrency(getTotalPrice(tour)) | currency: getCurrency() }}</p>
 
-          <button class="btn btn-primary me-3" (click)="bookTour(tour)"
-            [disabled]="getTotalBookedSeats(tour) === tour.maxPeople"><i class="bi bi-cart-plus-fill"></i></button>
-          <button class="btn btn-secondary" (click)="cancelTour(tour)" [disabled]="!hasBooking(tour)"><i
-              class="bi bi-cart-x-fill"></i></button>
+          <app-booking [tour]="tour" ></app-booking>
         </div>
         <div>
           <div class="form-check">
