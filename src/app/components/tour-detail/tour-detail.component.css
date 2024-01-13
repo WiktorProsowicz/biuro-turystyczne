@@ -1,0 +1,15 @@
+.tour__tiles {
+  margin: 0;
+  padding: 0;
+}
+
+.tour__tiles .tour__tilesTile {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.tour__tiles .tour__tilesTile i {
+  font-size: 2rem;
+  color: var(--custom);
+}
