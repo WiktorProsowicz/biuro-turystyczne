@@ -8,6 +8,4 @@ export interface Tour {
   maxPeople: number;
   description: string;
   image: string;
-  bookedSeats: number;
-  rating: number;
 }
