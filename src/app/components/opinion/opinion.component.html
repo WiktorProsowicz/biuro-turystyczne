@@ -1,0 +1,20 @@
+<div class="p-3 container-fluid shadow rounded">
+  <div class="d-flex align-items-center">
+    <div class="d-flex gap-2 align-items-center">
+      <small class="fw-light">{{getUser().nick}}</small>
+      <small class="text-secondary">{{opinion.dateCreated}}</small>
+    </div>
+  </div>
+
+  <hr>
+
+  <div>
+    <p class="text-justify fw-bold">{{opinion.topic}}</p>
+    <p class="text-justify">{{opinion.opinion}}</p>
+
+  </div>
+
+  <div *ngIf="opinion.date !== undefined">
+    <small class="text-secondary">Bought the trip: {{opinion.date}}</small>
+  </div>
+</div>
