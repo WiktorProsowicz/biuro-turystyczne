@@ -5,8 +5,8 @@ import { FilteredHistoryPipe } from '../../shared/pipes/filtered-history.pipe';
 import { getTourStatus } from '../../shared/helpers';
 import { MenuComponent } from '../menu/menu.component';
 import { CurrencyService } from '../../shared/services/currency.service';
-import { HistoryService } from '../../shared/services/history.service';
 import { ToursService } from '../../shared/services/tours.service';
+import { PurchasingService } from '../../shared/services/purchasing.service';
 
 @Component({
   selector: 'app-history',
@@ -19,10 +19,10 @@ export class HistoryComponent {
 
   filterStatus: any = 'all';
 
-  constructor(private currencyService: CurrencyService, private historyService: HistoryService, private toursService: ToursService) { }
+  constructor(private currencyService: CurrencyService, private purchasingService: PurchasingService) { }
 
   getHistory() {
-    return this.historyService.getPurchases();
+    return this.purchasingService.getPurchases();
   }
 
   getStatus(tour: any) {

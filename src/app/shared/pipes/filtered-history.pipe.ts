@@ -11,7 +11,7 @@ export class FilteredHistoryPipe implements PipeTransform {
   transform(historyItems: Purchase[], filterStatus: string): Purchase[] {
 
     return historyItems.filter((historyItem: any) => {
-      return (getTourStatus(historyItem) == filterStatus) || (filterStatus == 'all');
+      return (getTourStatus(historyItem.tour) == filterStatus) || (filterStatus == 'all');
     });
   }
 

@@ -4,10 +4,10 @@ export function getTourStatus(tour: any) {
   const startDate = new Date(tour.startDate);
   const endDate = new Date(tour.endDate);
 
-  if (startDate > now) {
+  if (startDate.getTime() > now.getTime()) {
     return 'upcoming';
   }
-  else if (endDate < now) {
+  else if (endDate.getTime() < now.getTime()) {
     return 'finished';
   }
   else {
