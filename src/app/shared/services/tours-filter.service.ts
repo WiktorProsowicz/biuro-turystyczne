@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ToursFilter } from '../interfaces/tours-filter';
 import { ToursService } from './tours.service';
 import { Tour } from '../interfaces/tour';
+import { ToursRatingService } from './tours-rating.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ToursFilterService {
 
   tours: Tour[];
 
-  constructor(toursService: ToursService) {
+  constructor(toursService: ToursService, private ratingService: ToursRatingService) {
 
     this.tours = toursService.getTours();
 
@@ -35,11 +36,11 @@ export class ToursFilterService {
   }
 
   getMinRating() {
-    return Math.min(...this.tours.map((tour: any) => tour.rating));
+    return Math.min(...this.tours.map((tour: any) => this.ratingService.getAverageTourRating(tour)));
   }
 
   getMaxRating() {
-    return Math.max(...this.tours.map((tour: any) => tour.rating))
+    return Math.max(...this.tours.map((tour: any) => this.ratingService.getAverageTourRating(tour)))
   }
 
   getStartDates(): Date[] {

@@ -59,7 +59,7 @@
 
     <div>
       <label for="maximalRatingRange" class="form-label">Maximal rating: {{ toursFilterService.toursFilter.maxRating |
-        number: '1.2'
+        number: '1.2-2'
         }}</label>
       <input step="0.01" [min]="toursFilterService.getMinRating()" [max]="toursFilterService.getMaxRating()"
         type="range" id="maximalRatingRange" name="maximalPriceRange"

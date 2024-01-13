@@ -1,54 +1,73 @@
-import { CurrencyPipe, NgClass, NgIf, NgStyle, UpperCasePipe } from '@angular/common';
+import { CurrencyPipe, DecimalPipe, NgClass, NgIf, NgStyle, UpperCasePipe } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { currencyToFactor } from '../shared/helpers';
+import { CurrencyService } from '../../shared/services/currency.service';
+import { ToursBookingService } from '../../shared/services/tours-booking.service';
+import { ToursRatingService } from '../../shared/services/tours-rating.service';
+import { RatingComponent } from '../rating/rating.component';
+import { Purchase } from '../../shared/interfaces/purchase';
+import { PurchasingService } from '../../shared/services/purchasing.service';
+import { BookingComponent } from '../booking/booking.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tour',
   standalone: true,
-  imports: [NgStyle, NgClass, UpperCasePipe, CurrencyPipe, NgIf],
+  imports: [DecimalPipe, NgStyle, NgClass, UpperCasePipe, CurrencyPipe, NgIf, RatingComponent, BookingComponent, RouterLink],
   templateUrl: './tour.component.html',
   styleUrl: './tour.component.css'
 })
 export class TourComponent {
   @Input() tour: any;
-  @Input() currencyCode: any;
-  @Input() additionalBookedSeats: number = 0;
 
   @Output() tourDeleted = new EventEmitter<boolean>();
   @Output() tourBooked = new EventEmitter<boolean>();
   @Output() tourCanceled = new EventEmitter<boolean>();
 
-  rateTour(rating: number) {
-    this.tour.rating = rating;
-  }
+  constructor(private currencyService: CurrencyService, private bookingService: ToursBookingService, private ratingService: ToursRatingService, private purchasingService: PurchasingService) { }
 
-  adjustToCurrency(price: number) {
-    return price / currencyToFactor[this.currencyCode];
-  }
-
-  bookTour() {
-    this.tourBooked.emit(true);
-  }
-
-  cancelTour() {
-    this.tourCanceled.emit(true);
-  }
+  // rateTour(rating: number) {
+  //   this.ratingService.rateTour(this.tour, rating);
+  // }
 
   deleteTour() {
     this.tourDeleted.emit(true);
   }
 
+  currentRating() {
+    return this.ratingService.getLocalTourRating(this.tour);
+  }
+
+  averageRating() {
+    return this.ratingService.getAverageTourRating(this.tour);
+  }
+
+  numberOfRatings() {
+    return this.ratingService.getNumberOfRatings(this.tour);
+  }
+
+  getCurrencyCode() {
+    return this.currencyService.getCurrencyCode();
+  }
+
+  convertPrice(price: number) {
+    return this.currencyService.convertPrice(price);
+  }
+
   getTourSeatsIndication() {
-    const availableSeats = this.tour.maxPeople - this.tour.bookedSeats;
+    const availableSeats = this.tour.maxPeople - this.cumulativeBookedSeats();
 
     if (availableSeats < 10) {
       return "tour-almost-sold-out"; // Style for almost sold out
-    } else {
-      return "tour-available"; // Style for available
     }
+
+    return '';
+  }
+
+  additionalBookedSeats() {
+    return this.bookingService.getTourBooking(this.tour);
   }
 
   cumulativeBookedSeats() {
-    return this.tour.bookedSeats + this.additionalBookedSeats;
+    return this.purchasingService.getPurchasedSeats(this.tour) + this.bookingService.getTourBooking(this.tour);
   }
 }

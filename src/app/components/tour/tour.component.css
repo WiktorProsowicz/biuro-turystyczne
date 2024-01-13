@@ -1,16 +1,25 @@
 .tour-almost-sold-out {
-  background-color: #bf746f;
+  background: linear-gradient( rgb(255, 98, 87), white);
 }
 
-.tour-available {
-  background-color: #76a687;
+
+.tour__soldBadge {
+  top: 10px;
+  right: 10px;
 }
 
-.rated {
-  color: #f9a825;
+.tour__tiles {
+  margin: 0;
+  padding: 0;
 }
 
-.star-rating {
-  font-size: 24px;
-  cursor: pointer;
+.tour__tiles .tour__tilesTile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tour__tiles .tour__tilesTile i {
+  font-size: 2rem;
+  color: var(--custom);
 }

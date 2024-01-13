@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Tour } from '../interfaces/tour';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 
 @Injectable({
@@ -12,9 +12,22 @@ export class ToursService {
   tours: Tour[] = [];
 
   constructor(private httpClient: HttpClient) {
-    this.httpClient.get<Tour[]>('assets/tours.json').subscribe(data => {
-      this.tours = data;
+
+    this.httpClient.get<any>('assets/tours.json').subscribe(data => {
+
+      Object.keys(data.tours).forEach((key: any) => {
+        this.tours.push(
+          {
+            id: parseInt(key),
+            ...data.tours[key]
+          }
+        );
+      });
     });
+
+    // db.object('tours').valueChanges().subscribe((data: any) => {
+    //   this.tours = Object.values(data);
+    // });
   }
 
   getTours(): Tour[] {
@@ -30,7 +43,8 @@ export class ToursService {
   }
 
   getTour(id: number): Tour | undefined {
-    return this.tours.find((tour: any) => tour.id === id);
+    return this.tours.find((tour: any) => tour.id == id);
+
   }
 
   getNextId(): number {

@@ -37,11 +37,11 @@ export class ToursComponent {
     const cheapest = Math.min(...this.getTours().map((t: any) => t.price));
 
     if (tour.price === mostExpensive) {
-      return { 'border': '2px solid red' }; // Style for most expensive
+      return "tour-most-expensive"; // Class for most expensive
     } else if (tour.price === cheapest) {
-      return { 'border': '2px solid green' }; // Style for cheapest
+      return "tour-cheapest"; // Class for cheapest
     } else {
-      return {}; // Default style
+      return ""; // Default class
     }
   }
 }

@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { ToursService } from '../../shared/services/tours.service';
-import { ToursFilter } from '../../shared/interfaces/tours-filter';
 import { Tour } from '../../shared/interfaces/tour';
 import { ToursFilterService } from '../../shared/services/tours-filter.service';
-import { FormControl, FormControlName, FormGroup, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyService } from '../../shared/services/currency.service';
 import { CurrencyPipe, DecimalPipe, NgFor } from '@angular/common';
-import { NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tours-filter',

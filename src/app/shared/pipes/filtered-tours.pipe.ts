@@ -1,12 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Tour } from '../interfaces/tour';
 import { ToursFilter } from '../interfaces/tours-filter';
+import { ToursRatingService } from '../services/tours-rating.service';
 
 @Pipe({
   name: 'filteredTours',
   standalone: true
 })
 export class FilteredToursPipe implements PipeTransform {
+
+  constructor(private ratingService: ToursRatingService) { }
 
   transform(tours: Tour[], toursFilter: ToursFilter): Tour[] {
 
@@ -21,11 +24,11 @@ export class FilteredToursPipe implements PipeTransform {
         return false;
       }
 
-      if (toursFilter?.minRating && tour.rating < toursFilter.minRating) {
+      if (toursFilter?.minRating && this.ratingService.getAverageTourRating(tour) < toursFilter.minRating) {
         return false;
       }
 
-      if (toursFilter?.maxRating && tour.rating > toursFilter.maxRating) {
+      if (toursFilter?.maxRating && this.ratingService.getAverageTourRating(tour) > toursFilter.maxRating) {
         return false;
       }
 
