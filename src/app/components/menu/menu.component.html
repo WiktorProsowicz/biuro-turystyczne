@@ -2,11 +2,11 @@
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/home" routerLinkActive="active">BiuroTurystyczne</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" (click)="collapse.toggle()">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navbarNav" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" [horizontal]="true">
       <ul class="navbar-nav">
 
         <li class="nav-item">
@@ -32,14 +32,14 @@
             </div>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item me-3">
           <a class="nav-link" routerLink="/add-tour" routerLinkActive="active">Add Tour</a>
         </li>
 
-        <li class="ms-3 nav-item">
+        <li class="nav-item">
           <div class="dropdown" ngbDropdown>
 
-            <button class="btn btn-secondary dropdown-toggle" type="button" ngbDropdownToggle>
+            <button class="btn text-white btn-secondary bg-custom-dark dropdown-toggle" type="button" ngbDropdownToggle>
               Currency <strong>{{getCurrencyCode()}}</strong>
             </button>
 
