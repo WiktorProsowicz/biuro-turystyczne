@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HistoryService } from './history.service';
+import { PurchasingService } from './purchasing.service';
 
-describe('HistoryService', () => {
-  let service: HistoryService;
+describe('PurchasingService', () => {
+  let service: PurchasingService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HistoryService);
+    service = TestBed.inject(PurchasingService);
   });
 
   it('should be created', () => {
