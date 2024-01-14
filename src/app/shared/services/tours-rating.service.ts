@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Tour } from '../interfaces/tour';
 import { Rating } from '../interfaces/rating';
 import { HttpClient } from '@angular/common/http';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +11,17 @@ export class ToursRatingService {
 
   toursRatings: Rating[] = [];
 
-  constructor(private httpClient: HttpClient) {
-    this.httpClient.get<any>('assets/tours.json').subscribe(data => {
+  constructor(private httpClient: HttpClient, private db: AngularFireDatabase) {
+    this.db.object('ratings').valueChanges().subscribe(data => {
 
-      Object.keys(data.ratings).forEach((key: any) => {
+      Object.keys(data).forEach((key: any) => {
         this.toursRatings.push(
           {
             id: parseInt(key),
-            ...data.ratings[key]
+            ...data[key]
           }
         );
       });
-
     });
   }
 

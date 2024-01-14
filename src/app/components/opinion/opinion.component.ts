@@ -4,6 +4,7 @@ import { UsersService } from '../../shared/services/users.service';
 import { User } from '../../shared/interfaces/user';
 import { NgFor, NgIf } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-opinion',
@@ -16,13 +17,17 @@ export class OpinionComponent {
 
   @Input() opinion: Opinion;
 
-  user: User;
+  user: User = {
+    id: 0,
+    nick: '',
+  };
 
-  constructor(private usersService: UsersService) {
-  }
+  constructor(private usersService: UsersService, db: AngularFireDatabase) {
 
-  getUser(): User {
-    return this.usersService.getUser(this.opinion.userId);
+    db.object('users').valueChanges().subscribe(() => {
+      this.user = this.usersService.getUser(this.opinion.userId);
+    });
+
   }
 
 }

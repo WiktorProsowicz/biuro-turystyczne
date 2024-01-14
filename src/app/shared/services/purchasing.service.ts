@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Purchase } from '../interfaces/purchase';
 import { Tour } from '../interfaces/tour';
 import { ToursService } from './tours.service';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { getTourStatus } from '../helpers';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +13,16 @@ export class PurchasingService {
 
   private purchases: Purchase[] = [];
 
-  constructor(private httpClient: HttpClient, private toursService: ToursService) {
-    this.httpClient.get<any>('assets/tours.json').subscribe(data => {
+  constructor(private httpClient: HttpClient, private toursService: ToursService, private db: AngularFireDatabase) {
+    this.db.object('purchases').valueChanges().subscribe(data => {
 
-      Object.keys(data.purchases).forEach((key: any) => {
+      Object.keys(data).forEach((key: any) => {
 
         this.purchases.push(
           {
-            tour: this.toursService.getTour(data.purchases[key].tourId),
-            date: data.purchases[key].date,
-            seats: data.purchases[key].seats,
+            tour: this.toursService.getTour(data[key].tourId),
+            date: data[key].date,
+            seats: data[key].seats,
           }
         );
       });
@@ -40,6 +42,10 @@ export class PurchasingService {
 
   getPurchases() {
     return this.purchases;
+  }
+
+  hasAnyUpcomingTours() {
+    return this.purchases.some((purchase: Purchase) => getTourStatus(purchase.tour) === 'upcoming');
   }
 
 }

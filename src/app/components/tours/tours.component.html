@@ -10,7 +10,7 @@
 
         <div class="mt-3 col-8 offset-2 col-md-12 offset-md-0 col-lg-8 offset-lg-2 p-0 rounded" [ngClass]="getTourPriceIndication(tour)">
 
-          <app-tour [tour]="tour"></app-tour>
+          <app-tour [tour]="tour" (tourDeleted)="deleteTour(tour)"></app-tour>
 
         </div>
       </div>

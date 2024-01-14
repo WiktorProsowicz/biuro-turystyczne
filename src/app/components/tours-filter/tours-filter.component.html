@@ -40,7 +40,7 @@
       <select class="form-select" id="destinationSelect" formControlName="destination" (change)="setDestination()">
         <option id="destinationFilter">
           All</option>
-        <option *ngFor="let destination of availableDestinations, index as i" id="destinationFilter{{i}}">
+        <option *ngFor="let destination of availableDestinations(), index as i" id="destinationFilter{{i}}">
           {{ destination}}
         </option>
       </select>
@@ -50,7 +50,7 @@
   <form class="d-flex flex-column align-items-between gap-4">
     <div>
       <label for="minimalRatingRange" class="form-label">Minimal rating: {{ toursFilterService.toursFilter.minRating |
-        number : '1.2'
+        number : '1.2-2'
         }}</label>
       <input step="0.01" [min]="toursFilterService.getMinRating()" [max]="toursFilterService.getMaxRating()"
         type="range" id="minimalRatingRange" name="minimalPriceRange"

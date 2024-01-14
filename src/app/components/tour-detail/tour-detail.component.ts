@@ -11,7 +11,7 @@ import { ToursBookingService } from '../../shared/services/tours-booking.service
 import { PurchasingService } from '../../shared/services/purchasing.service';
 import { BookingComponent } from '../booking/booking.component';
 import { NgbCarousel, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { GoogleMap, GoogleMapsModule, MapGeocoder } from '@angular/google-maps';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { ToursRatingService } from '../../shared/services/tours-rating.service';
 import { RatingComponent } from '../rating/rating.component';
 import { OpinionsService } from '../../shared/services/opinions.service';
@@ -19,6 +19,9 @@ import { OpinionComponent } from '../opinion/opinion.component';
 import { Opinion } from '../../shared/interfaces/opinion';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Loader } from '@googlemaps/js-api-loader';
+
 
 @Component({
   selector: 'app-tour-detail',
@@ -29,12 +32,27 @@ import { Router } from '@angular/router';
 })
 export class TourDetailComponent {
 
-  tourDetail: TourDetail;
-  tour: Tour;
+  tourDetail: TourDetail = {
+    tourId: 0,
+    description: '',
+    images: []
+  };
+
+  tour: Tour = {
+    id: 0,
+    name: '',
+    price: 0,
+    targetCountry: '',
+    startDate: '',
+    endDate: '',
+    description: '',
+    image: '',
+    maxPeople: 0,
+  };
+
   opinions: Opinion[] = [];
 
   center: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
-  coordinates = { latitude: 0, longitude: 0 };
   zoom = 4;
 
   mapGeocoder: any;
@@ -45,7 +63,9 @@ export class TourDetailComponent {
     commentLength: '',
   };
 
-  constructor(private opinionsService: OpinionsService, private ratingService: ToursRatingService, private activatedRoute: ActivatedRoute, private toursService: ToursService, private detailService: TourDetailService, private currencyService: CurrencyService, private bookingService: ToursBookingService, private purchasingService: PurchasingService, private router: Router) {
+  mapsLoaded = false;
+
+  constructor(private opinionsService: OpinionsService, private ratingService: ToursRatingService, private activatedRoute: ActivatedRoute, private toursService: ToursService, private detailService: TourDetailService, private currencyService: CurrencyService, private bookingService: ToursBookingService, private purchasingService: PurchasingService, private router: Router, db: AngularFireDatabase) {
 
     this.opinionForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
@@ -53,41 +73,59 @@ export class TourDetailComponent {
       dateBought: new FormControl('', [])
     });
 
+    const loader = new Loader({
+      apiKey: "AIzaSyC93gUtO26l9YC_yrG1O54e6WiL-gOzfYE",
+      version: "weekly",
+      libraries: ["places"]
+    });
 
     this.activatedRoute.paramMap.subscribe(params => {
       let tourId = +params.get('id');
 
-      if (this.toursService.getTour(tourId) == null) {
-        this.router.navigate(['/404']);
-      }
+      db.object('tours').valueChanges().subscribe(() => {
 
-      this.tour = this.toursService.getTour(tourId);
+        if (this.toursService.getTour(tourId) == null) {
+          this.router.navigate(['/404']);
+        }
 
-      this.tourDetail = this.detailService.getDetail(this.tour);
+        this.tour = this.toursService.getTour(tourId);
+
+        loader.importLibrary('places').then(() => {
+          this.mapsLoaded = true;
+          this.obtainLocalization(this.tour.targetCountry);
+        });
+
+        db.object('details').valueChanges().subscribe(() => {
+
+          this.tourDetail = this.detailService.getDetail(this.tour);
+        });
+
+        db.object('opinions').valueChanges().subscribe(() => {
+
+          this.opinions = this.opinionsService.getOpinions(this.tour);
+        });
+      });
+
     });
 
-    this.opinions = this.opinionsService.getOpinions(this.tour);
-
-  }
-
-  ngAfterViewInit() {
-
-    this.mapGeocoder = new google.maps.Geocoder();
-
-    this.obtainLocalization(this.tour.targetCountry);
   }
 
   obtainLocalization(country: string) {
+
+    this.mapGeocoder = new google.maps.Geocoder();
 
     const request: google.maps.GeocoderRequest = {
       address: country
     };
 
     this.mapGeocoder.geocode(request, (results, status) => {
+
       if (status === google.maps.GeocoderStatus.OK) {
 
-        this.center.lat = results[0].geometry.location.lat();
-        this.center.lng = results[0].geometry.location.lng();
+        this.center = {
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng()
+        };
       }
 
     });
@@ -122,7 +160,6 @@ export class TourDetailComponent {
   }
 
   submitOpinion() {
-    // console.log(this.opinionForm.value);
 
     this.formErrors = {
       topicLength: '',

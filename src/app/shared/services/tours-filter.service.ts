@@ -3,21 +3,28 @@ import { ToursFilter } from '../interfaces/tours-filter';
 import { ToursService } from './tours.service';
 import { Tour } from '../interfaces/tour';
 import { ToursRatingService } from './tours-rating.service';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToursFilterService {
 
-  public toursFilter: ToursFilter;
+  public toursFilter: ToursFilter = this.getDefaultFilter();
 
-  tours: Tour[];
+  constructor(private toursService: ToursService, private ratingService: ToursRatingService, private db: AngularFireDatabase) {
 
-  constructor(toursService: ToursService, private ratingService: ToursRatingService) {
+    db.object('tours').valueChanges().subscribe(data => {
+      this.toursFilter = this.getDefaultFilter();
+    });
 
-    this.tours = toursService.getTours();
+    db.object('ratings').valueChanges().subscribe(data => {
+      this.toursFilter = this.getDefaultFilter();
+    });
+  }
 
-    this.toursFilter = {
+  getDefaultFilter(): ToursFilter {
+    return {
       minPrice: this.getMinPrice(),
       maxPrice: this.getMaxPrice(),
       minRating: this.getMinRating(),
@@ -28,27 +35,27 @@ export class ToursFilterService {
   }
 
   getMinPrice() {
-    return Math.min(...this.tours.map((tour: any) => tour.price));
+    return Math.min(...this.toursService.getTours().map((tour: any) => tour.price));
   }
 
   getMaxPrice() {
-    return Math.max(...this.tours.map((tour: any) => tour.price))
+    return Math.max(...this.toursService.getTours().map((tour: any) => tour.price))
   }
 
   getMinRating() {
-    return Math.min(...this.tours.map((tour: any) => this.ratingService.getAverageTourRating(tour)));
+    return Math.min(...this.toursService.getTours().map((tour: any) => this.ratingService.getAverageTourRating(tour)));
   }
 
   getMaxRating() {
-    return Math.max(...this.tours.map((tour: any) => this.ratingService.getAverageTourRating(tour)))
+    return Math.max(...this.toursService.getTours().map((tour: any) => this.ratingService.getAverageTourRating(tour)))
   }
 
   getStartDates(): Date[] {
-    return this.tours.map((tour: any) => new Date(tour.startDate));
+    return this.toursService.getTours().map((tour: any) => new Date(tour.startDate));
   }
 
   getEndDates(): Date[] {
-    return this.tours.map((tour: any) => new Date(tour.endDate));
+    return this.toursService.getTours().map((tour: any) => new Date(tour.endDate));
   }
 
   getMinDate(): string {

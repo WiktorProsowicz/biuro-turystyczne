@@ -20,14 +20,9 @@ export class TourComponent {
   @Input() tour: any;
 
   @Output() tourDeleted = new EventEmitter<boolean>();
-  @Output() tourBooked = new EventEmitter<boolean>();
-  @Output() tourCanceled = new EventEmitter<boolean>();
 
   constructor(private currencyService: CurrencyService, private bookingService: ToursBookingService, private ratingService: ToursRatingService, private purchasingService: PurchasingService) { }
 
-  // rateTour(rating: number) {
-  //   this.ratingService.rateTour(this.tour, rating);
-  // }
 
   deleteTour() {
     this.tourDeleted.emit(true);
@@ -56,7 +51,7 @@ export class TourComponent {
   getTourSeatsIndication() {
     const availableSeats = this.tour.maxPeople - this.cumulativeBookedSeats();
 
-    if (availableSeats < 10) {
+    if (availableSeats <= 3) {
       return "tour-almost-sold-out"; // Style for almost sold out
     }
 

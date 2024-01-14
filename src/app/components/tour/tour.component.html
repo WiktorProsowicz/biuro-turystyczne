@@ -53,7 +53,7 @@
 
         <div class="tour__tilesTile" [ngClass]="{'low-seats': (tour.maxPeople - cumulativeBookedSeats()) <= 3}">
           <i class="bi bi-person-fill"></i>
-          <span class="fw-light">{{ tour.maxPeople - cumulativeBookedSeats() }}</span>
+          <span class="fw-light">{{ tour.maxPeople - cumulativeBookedSeats() }} / {{tour.maxPeople}}</span>
         </div>
       </div>
     </div>

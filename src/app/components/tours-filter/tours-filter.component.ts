@@ -16,22 +16,20 @@ import { CurrencyPipe, DecimalPipe, NgFor } from '@angular/common';
 export class ToursFilterComponent {
 
 
-  availableDestinations: string[] = [];
   destinationForm: FormGroup;
 
   constructor(private toursService: ToursService, public toursFilterService: ToursFilterService, private currencyService: CurrencyService) {
-
-    let tours: Tour[] = toursService.getTours();
-
-    this.availableDestinations = tours.map((tour: any) => tour.targetCountry).filter((country: any, index: any) => {
-      return tours.map((tour: any) => tour.targetCountry).indexOf(country) === index;
-    });
-
 
     this.destinationForm = new FormGroup({
       destination: new FormControl()
     });
 
+  }
+
+  availableDestinations() {
+    return this.toursService.getTours().map((tour: any) => tour.targetCountry).filter((country: any, index: any) => {
+      return this.toursService.getTours().map((tour: any) => tour.targetCountry).indexOf(country) === index;
+    });
   }
 
   reload() {
@@ -59,6 +57,22 @@ export class ToursFilterComponent {
 
   currencyCode() {
     return this.currencyService.currencyCode;
+  }
+
+  maxPrice() {
+    return this.toursFilterService.toursFilter.maxPrice || 0;
+  }
+
+  minPrice() {
+    return this.toursFilterService.toursFilter.minPrice || 0;
+  }
+
+  maxRating() {
+    return this.toursFilterService.toursFilter.maxRating || 0;
+  }
+
+  minRating() {
+    return this.toursFilterService.toursFilter.minRating || 0;
   }
 
 }

@@ -13,6 +13,10 @@ export class FilteredToursPipe implements PipeTransform {
 
   transform(tours: Tour[], toursFilter: ToursFilter): Tour[] {
 
+    if (!toursFilter) {
+      return tours;
+    }
+
     return tours?.filter((tour: any) => {
 
 

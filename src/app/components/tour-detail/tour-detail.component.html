@@ -54,7 +54,7 @@
 
           <div class="tour__tilesTile">
             <i class="bi bi-person-fill"></i>
-            <span class="fw-light">{{ tour.maxPeople - cumulativeBookedSeats() }}</span>
+            <span class="fw-light">{{ tour.maxPeople - cumulativeBookedSeats() }} / {{tour.maxPeople}}</span>
           </div>
         </div>
       </div>
@@ -84,8 +84,8 @@
 
     <div class="col-12">
       <div class="container-fluid d-flex justify-content-center">
-        <div>
-          <google-map [center]="center" [zoom]="zoom" width="800px" height="400px"></google-map>
+        <div *ngIf="mapsLoaded">
+          <google-map  [center]="center" [zoom]="zoom" width="800px" height="400px"></google-map>
         </div>
       </div>
     </div>

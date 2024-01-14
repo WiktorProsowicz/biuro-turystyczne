@@ -25,6 +25,10 @@ export class ToursComponent {
 
   }
 
+  deleteTour(tour: Tour) {
+    this.toursService.deleteTour(tour);
+  }
+
   getTours() {
     return this.toursService.getTours();
   }
