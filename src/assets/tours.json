@@ -93,31 +93,40 @@
   },
   "users": {
     "0": {
-      "nick": "Jan"
+      "nick": "Jan",
+      "email": "jan@example.com"
     },
     "1": {
-      "nick": "Anna"
+      "nick": "Anna",
+      "email": "anna@example.com"
     },
     "2": {
-      "nick": "Piotr"
+      "nick": "Piotr",
+      "email": "piotr@example.com"
     },
     "3": {
-      "nick": "Maria"
+      "nick": "Maria",
+      "email": "maria@example.com"
     },
     "4": {
-      "nick": "Tomasz"
+      "nick": "Tomasz",
+      "email": "tomasz@example.com"
     },
     "5": {
-      "nick": "Katarzyna"
+      "nick": "Katarzyna",
+      "email": "katarzyna@example.com"
     },
     "6": {
-      "nick": "Michał"
+      "nick": "Michał",
+      "email": "michal@example.com"
     },
     "7": {
-      "nick": "Alicja"
+      "nick": "Alicja",
+      "email": "alicja@example.com"
     },
     "8": {
-      "nick": "Grzegorz"
+      "nick": "Grzegorz",
+      "email": "grzegorz@example.com"
     }
   },
   "ratings": {

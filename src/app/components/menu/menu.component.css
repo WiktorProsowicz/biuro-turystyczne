@@ -22,3 +22,14 @@
   transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
 }
 
+#menuUpcomingWarning {
+  position: relative;
+}
+
+#menuUpcomingWarning:hover .menuPopover {
+  z-index: 100;
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, -20px);
+  transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}

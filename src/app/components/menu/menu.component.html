@@ -2,41 +2,64 @@
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/home" routerLinkActive="active">BiuroTurystyczne</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" (click)="collapse.toggle()">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      (click)="collapse.toggle()">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" [horizontal]="true">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarNav" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed"
+      [horizontal]="true">
+      <ul class="navbar-nav align-items-start align-items-lg-center">
 
         <li class="nav-item">
           <a class="nav-link" routerLink="/tours" routerLinkActive="active">Tours</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/history" routerLinkActive="active">History</a>
+          <div class="d-flex align-items-center">
+            <a class="pe-0 nav-link" id="menuUpcomingWarning" routerLink="/history" routerLinkActive="active">History
+
+              <div *ngIf="hasAnyUpcomingTours()" class="menuPopover shadow p-3">
+                <h3 class="fw-light text-center">Upcoming:</h3>
+                <hr>
+                <div class="d-flex flex-column gap-3 justify-content-center"
+                  *ngFor="let purchase of (getPurchases() | filteredHistory: 'upcoming')">
+                  <div class="d-flex flex-column align-items-start p-2">
+                    <strong>{{purchase.tour.name}}</strong>
+                    <small>{{purchase.tour.startDate}} - {{purchase.tour.endDate}}</small>
+                  </div>
+                </div>
+              </div>
+
+            </a>
+
+            <span *ngIf="hasAnyUpcomingTours()">
+              <i class="bi bi-exclamation-lg text-danger fw-bold fs-large"></i>
+            </span>
+          </div>
         </li>
 
         <li class="nav-item">
-            <div class="d-flex align-items-center">
-              <a class="nav-link" id="menuBasketLink" routerLink="/basket" routerLinkActive="active">Basket
+          <div class="d-flex align-items-center">
+            <a class="nav-link" id="menuBasketLink" routerLink="/basket" routerLinkActive="active">Basket
 
-                <div class="menuPopover d-flex justify-content-center">
-                  <app-summary></app-summary>
-                </div>
+              <div class="menuPopover d-flex justify-content-center">
+                <app-summary></app-summary>
+              </div>
 
-              </a>
-              <span *ngIf="hasAnyBooking()" id="menuBookingLength" class="badge bg-primary">
-                {{getNumberOfBookedTours()}}
-              </span>
-            </div>
+            </a>
+            <span *ngIf="hasAnyBooking()" id="menuBookingLength" class="badge bg-primary">
+              {{getNumberOfBookedTours()}}
+            </span>
+          </div>
         </li>
 
-        <li class="nav-item me-3">
+        <li class="nav-item me-5">
           <a class="nav-link" routerLink="/add-tour" routerLinkActive="active">Add Tour</a>
         </li>
 
-        <li class="nav-item">
+
+        <li class="nav-item me-5">
           <div class="dropdown" ngbDropdown>
 
             <button class="btn text-white btn-secondary bg-custom-dark dropdown-toggle" type="button" ngbDropdownToggle>
@@ -57,6 +80,20 @@
                   class="dropdown-item" (click)="setCurrencyCode('GBP')">GBP</button></li>
             </ul>
           </div>
+        </li>
+
+        <li class="nav-item d-flex align-items-center gap-3 shadow p-2 rounded">
+
+          <div *ngIf="getUser() != null" class="d-flex align-items-center badge bg-custom p-3 gap-2">
+            <span><i class="bi bi-person-circle"></i></span>
+            <span>{{getUser().nick}}</span>
+          </div>
+
+          <button *ngIf="getUser() != null" class="btn rounded btn-secondary" (click)="logout()">sign-out</button>
+
+          <a routerLink="/sign-in" routerLinkActive="active" *ngIf="getUser() == null" class="btn rounded btn-secondary" >sign-in</a>
+
+
         </li>
       </ul>
     </div>
