@@ -11,18 +11,19 @@ export class ToursService {
 
   tours: Tour[] = [];
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private db: AngularFireDatabase) {
 
-    this.httpClient.get<any>('assets/tours.json').subscribe(data => {
+    this.db.object('tours').valueChanges().subscribe(data => {
 
-      Object.keys(data.tours).forEach((key: any) => {
+      Object.keys(data).forEach((key: any) => {
         this.tours.push(
           {
             id: parseInt(key),
-            ...data.tours[key]
+            ...data[key]
           }
         );
       });
+
     });
 
     // db.object('tours').valueChanges().subscribe((data: any) => {
@@ -49,5 +50,9 @@ export class ToursService {
 
   getNextId(): number {
     return Math.max(...this.tours.map((tour: any) => tour.id)) + 1;
+  }
+
+  deleteTour(tour: Tour) {
+    this.tours = this.tours.filter((t: any) => t.id !== tour.id);
   }
 }

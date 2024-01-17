@@ -7,14 +7,19 @@ import { AddTourComponent } from './components/add-tour/add-tour.component';
 import { TourDetailComponent } from './components/tour-detail/tour-detail.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'tours', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'tours', component: ToursComponent },
   { path: 'tours/:id', component: TourDetailComponent },
   { path: 'basket', component: BasketPageComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'add-tour', component: AddTourComponent },
+  { path: 'sign-in', component: SigninComponent },
+  { path: 'sign-up', component: SignupComponent },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '404' }
 ];

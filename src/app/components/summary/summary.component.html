@@ -1,21 +1,21 @@
 <div class="container-fluid py-3 px-5 shadow">
   <div class="row">
     <div class="col-md-12 justify-content-center d-flex">
-      <div class="d-flex gap-4 justify-content-between w-100">
+      <div class="d-flex gap-4 justify-content-between w-100 align-items-center">
         <strong class="mb-1">Total booked Seats:</strong>
-        <p>{{ getTotalBookedSeats() }}</p>
+        <p class="p-1">{{ getTotalBookedSeats() }}</p>
       </div>
     </div>
     <div class="col-md-12 justify-content-center d-flex">
-      <div class="d-flex gap-4 justify-content-between w-100">
+      <div  class="d-flex gap-4 justify-content-between w-100 align-items-center">
         <strong class="mb-1">Total booked Tours:</strong>
-        <p>{{ getTotalBookedTours() }}</p>
+        <p [ngClass]="getBookedToursIndication()" class="p-1 rounded">{{ getTotalBookedTours() }}</p>
       </div>
     </div>
     <div class="col-md-12 justify-content-center d-flex">
-      <div class="d-flex gap-4 justify-content-between w-100">
+      <div class="d-flex gap-4 justify-content-between w-100 align-items-center">
         <strong class="d-flex gap-4" class="mb-1">Total price:</strong>
-        <p>{{ adjustToCurrency(getTotalPrice()) | currency: getCurrency() }}</p>
+        <p class="p-1">{{ adjustToCurrency(getTotalPrice()) | currency: getCurrency() }}</p>
       </div>
     </div>
   </div>

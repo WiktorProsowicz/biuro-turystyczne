@@ -1,10 +1,9 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withJsonpSupport } from '@angular/common/http';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
@@ -19,6 +18,22 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { GoogleMapsModule } from '@angular/google-maps';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(), importProvidersFrom(provideFirebaseApp(() => initializeApp(environment.firebaseConfig))), importProvidersFrom(provideAuth(() => getAuth())), importProvidersFrom(provideAnalytics(() => getAnalytics())), ScreenTrackingService, UserTrackingService, importProvidersFrom(provideFirestore(() => getFirestore())), importProvidersFrom(provideDatabase(() => getDatabase())), importProvidersFrom(provideFunctions(() => getFunctions())), importProvidersFrom(provideMessaging(() => getMessaging())), importProvidersFrom(provideStorage(() => getStorage())), importProvidersFrom(provideRemoteConfig(() => getRemoteConfig())), { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig }]
-
+  providers: [
+    provideRouter(routes),
+    provideClientHydration(),
+    provideHttpClient(),
+    importProvidersFrom(provideFirebaseApp(() => initializeApp(environment.firebaseConfig))),
+    importProvidersFrom(provideAuth(() => getAuth())),
+    importProvidersFrom(provideAnalytics(() => getAnalytics())),
+    ScreenTrackingService,
+    UserTrackingService,
+    importProvidersFrom(provideFirestore(() => getFirestore())),
+    importProvidersFrom(provideDatabase(() => getDatabase())),
+    importProvidersFrom(provideFunctions(() => getFunctions())),
+    importProvidersFrom(provideMessaging(() => getMessaging())),
+    importProvidersFrom(provideStorage(() => getStorage())),
+    importProvidersFrom(provideRemoteConfig(() => getRemoteConfig())),
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig },
+    GoogleMapsModule // Add GoogleMapsModule to the providers array
+  ]
 };
