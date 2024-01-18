@@ -26,7 +26,7 @@ export class OpinionComponent {
 
   constructor(private usersService: UsersService, db: AngularFireDatabase) {
 
-    db.object('users').valueChanges().subscribe(() => {
+    usersService.getReadyEvent().subscribe(() => {
       this.user = this.usersService.getUser(this.opinion.userId);
     });
 

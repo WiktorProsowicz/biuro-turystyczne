@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -11,6 +11,7 @@ export class UsersService {
 
   users: User[] = [];
   currentUser: User | null = null;
+  eventReady: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private httpClient: HttpClient, private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.db.object('users').valueChanges().subscribe(data => {
@@ -25,6 +26,8 @@ export class UsersService {
           }
         );
       });
+
+      this.eventReady.emit(true);
 
       this.afAuth.authState.subscribe(user => {
 
@@ -41,7 +44,9 @@ export class UsersService {
 
   }
 
-
+  getReadyEvent(): EventEmitter<boolean> {
+    return this.eventReady;
+  }
 
   getCurrentUser(): User | null {
 

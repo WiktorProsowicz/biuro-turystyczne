@@ -121,7 +121,7 @@
     </div>
 
     <div class="col-12">
-      <div *ngFor="let opinion of opinions">
+      <div *ngFor="let opinion of getOpinions()">
         <div class="mt-4">
         <app-opinion [opinion]="opinion"></app-opinion>
           </div>

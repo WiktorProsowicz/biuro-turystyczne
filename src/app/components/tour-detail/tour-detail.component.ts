@@ -21,6 +21,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Loader } from '@googlemaps/js-api-loader';
+import { UsersService } from '../../shared/services/users.service';
 
 
 @Component({
@@ -50,8 +51,6 @@ export class TourDetailComponent {
     maxPeople: 0,
   };
 
-  opinions: Opinion[] = [];
-
   center: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
   zoom = 4;
 
@@ -65,7 +64,7 @@ export class TourDetailComponent {
 
   mapsLoaded = false;
 
-  constructor(private opinionsService: OpinionsService, private ratingService: ToursRatingService, private activatedRoute: ActivatedRoute, private toursService: ToursService, private detailService: TourDetailService, private currencyService: CurrencyService, private bookingService: ToursBookingService, private purchasingService: PurchasingService, private router: Router, db: AngularFireDatabase) {
+  constructor(private opinionsService: OpinionsService, private ratingService: ToursRatingService, private activatedRoute: ActivatedRoute, private toursService: ToursService, private detailService: TourDetailService, private currencyService: CurrencyService, private bookingService: ToursBookingService, private purchasingService: PurchasingService, private router: Router, db: AngularFireDatabase, private usersService: UsersService) {
 
     this.opinionForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
@@ -101,14 +100,18 @@ export class TourDetailComponent {
           this.tourDetail = this.detailService.getDetail(this.tour);
         });
 
-        db.object('opinions').valueChanges().subscribe(() => {
+        // db.object('opinions').valueChanges().subscribe(() => {
 
-          this.opinions = this.opinionsService.getOpinions(this.tour);
-        });
+        //   this.opinions = this.opinionsService.getOpinions(this.tour);
+        // });
       });
 
     });
 
+  }
+
+  getOpinions() {
+    return this.opinionsService.getOpinions(this.tour);
   }
 
   obtainLocalization(country: string) {
@@ -162,6 +165,11 @@ export class TourDetailComponent {
 
   submitOpinion() {
 
+    if(this.usersService.getCurrentUser() == null) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
+
     this.formErrors = {
       topicLength: '',
       commentLength: '',
@@ -171,7 +179,7 @@ export class TourDetailComponent {
     const newOpinion: Opinion = {
       id: this.opinionsService.getMaxId() + 1,
       tourId: this.tour.id,
-      userId: 0,
+      userId: this.usersService.getCurrentUser().id,
       topic: this.opinionForm.value.name,
       opinion: this.opinionForm.value.comment,
       dateCreated: new Date().toISOString().split('T')[0],
@@ -191,7 +199,7 @@ export class TourDetailComponent {
 
       this.opinionForm.reset();
 
-      this.opinions.push(newOpinion);
+      this.opinionsService.addOpinion(newOpinion);
     }
   }
 
