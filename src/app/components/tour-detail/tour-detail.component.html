@@ -13,7 +13,7 @@
       <div *ngIf="tourDetail != undefined" class="d-flex justify-content-center align-items-center">
         <ngb-carousel id="imagesCarousel" class="carousel slide w-75">
           <ng-template ngbSlide *ngFor="let image of tourDetail.images, index as i">
-            <img [src]="image" class="d-block w-100" [ngClass]="{'active': i == 0}">
+            <img [src]="image" class="d-block" [ngClass]="{'active': i == 0}" style="height: 400px">
           </ng-template>
 
           <button class="carousel-control-prev" type="button" data-bs-target="#imagesCarousel" data-bs-slide="prev">

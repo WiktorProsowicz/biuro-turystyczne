@@ -3,8 +3,8 @@
     "0": {
       "name": "Wycieczka po Paryżu",
       "targetCountry": "France",
-      "startDate": "2022-05-15",
-      "endDate": "2022-05-22",
+      "startDate": "2024-01-22",
+      "endDate": "2024-05-22",
       "price": 8000,
       "maxPeople": 12,
       "description": "Wycieczka po Paryżu dla 12 osób. Zwiedzanie Wieży Eiffla, Luwru, Katedry Notre-Dame i innych atrakcji. Noclegi w komfortowych hotelach, wyżywienie w tradycyjnych francuskich restauracjach.",
@@ -94,39 +94,48 @@
   "users": {
     "0": {
       "nick": "Jan",
-      "email": "jan@example.com"
+      "email": "jan@example.com",
+      "isAdmin": true
     },
     "1": {
       "nick": "Anna",
-      "email": "anna@example.com"
+      "email": "anna@example.com",
+      "isAdmin": false
     },
     "2": {
       "nick": "Piotr",
-      "email": "piotr@example.com"
+      "email": "piotr@example.com",
+      "isAdmin": false
     },
     "3": {
       "nick": "Maria",
-      "email": "maria@example.com"
+      "email": "maria@example.com",
+      "isAdmin": false
     },
     "4": {
       "nick": "Tomasz",
-      "email": "tomasz@example.com"
+      "email": "tomasz@example.com",
+      "isAdmin": false
     },
     "5": {
       "nick": "Katarzyna",
-      "email": "katarzyna@example.com"
+      "email": "katarzyna@example.com",
+      "isAdmin": false
     },
     "6": {
       "nick": "Michał",
-      "email": "michal@example.com"
+      "email": "michal@example.com",
+      "isAdmin": false
     },
     "7": {
       "nick": "Alicja",
-      "email": "alicja@example.com"
+      "email": "alicja@example.com",
+      "isAdmin": false
     },
     "8": {
       "nick": "Grzegorz",
-      "email": "grzegorz@example.com"
+      "email": "grzegorz@example.com",
+      "isAdmin": false
     }
   },
   "ratings": {
