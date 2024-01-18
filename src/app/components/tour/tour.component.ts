@@ -8,6 +8,7 @@ import { Purchase } from '../../shared/interfaces/purchase';
 import { PurchasingService } from '../../shared/services/purchasing.service';
 import { BookingComponent } from '../booking/booking.component';
 import { RouterLink } from '@angular/router';
+import { UsersService } from '../../shared/services/users.service';
 
 @Component({
   selector: 'app-tour',
@@ -21,11 +22,15 @@ export class TourComponent {
 
   @Output() tourDeleted = new EventEmitter<boolean>();
 
-  constructor(private currencyService: CurrencyService, private bookingService: ToursBookingService, private ratingService: ToursRatingService, private purchasingService: PurchasingService) { }
+  constructor(private currencyService: CurrencyService, private bookingService: ToursBookingService, private ratingService: ToursRatingService, private purchasingService: PurchasingService, private usersService: UsersService) { }
 
 
   deleteTour() {
     this.tourDeleted.emit(true);
+  }
+
+  getUser() {
+    return this.usersService.getCurrentUser();
   }
 
   currentRating() {

@@ -15,7 +15,7 @@
           <a class="nav-link" routerLink="/tours" routerLinkActive="active">Tours</a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="getUser() != null" >
           <div class="d-flex align-items-center">
             <a class="pe-0 nav-link" id="menuUpcomingWarning" routerLink="/history" routerLinkActive="active">History
 
@@ -39,7 +39,7 @@
           </div>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="getUser() != null">
           <div class="d-flex align-items-center">
             <a class="nav-link" id="menuBasketLink" routerLink="/basket" routerLinkActive="active">Basket
 
@@ -54,12 +54,12 @@
           </div>
         </li>
 
-        <li class="nav-item me-5">
+        <li class="nav-item" *ngIf="getUser() != null && getUser().isAdmin">
           <a class="nav-link" routerLink="/add-tour" routerLinkActive="active">Add Tour</a>
         </li>
 
 
-        <li class="nav-item me-5">
+        <li class="nav-item mx-5">
           <div class="dropdown" ngbDropdown>
 
             <button class="btn text-white btn-secondary bg-custom-dark dropdown-toggle" type="button" ngbDropdownToggle>

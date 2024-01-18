@@ -86,6 +86,7 @@ export class TourDetailComponent {
 
         if (this.toursService.getTour(tourId) == null) {
           this.router.navigate(['/404']);
+          return;
         }
 
         this.tour = this.toursService.getTour(tourId);

@@ -12,7 +12,10 @@
           <label for="password">Password</label>
           <input type="password" class="form-control" formControlName="password" id="password" placeholder="Enter password">
         </div>
+        <span *ngIf="errorMessage != ''" class="text-danger">{{errorMessage}}</span>
         <button [disabled]="!formGroup.valid" type="submit" class="btn btn-primary">Sign In</button>
+
+
       </form>
     </div>
     <div class="col-md-6 offset-md-3 p-4">

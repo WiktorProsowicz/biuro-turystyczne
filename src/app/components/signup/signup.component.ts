@@ -14,6 +14,8 @@ import { MenuComponent } from '../menu/menu.component';
 export class SignupComponent {
   formGroup: FormGroup;
 
+  errorMessage: string = '';
+
   constructor(private usersService: UsersService) {
 
     this.formGroup = new FormGroup({
@@ -25,6 +27,16 @@ export class SignupComponent {
   }
 
   register() {
-    this.usersService.signUp(this.formGroup.value.email, this.formGroup.value.password);
+
+    this.errorMessage = '';
+
+    this.usersService.signUp(this.formGroup.value.email, this.formGroup.value.password).then(data => {
+      this.usersService.createUser(this.formGroup.value.email, this.formGroup.value.nick);
+      this.formGroup.reset();
+    }).catch(error => {
+      this.errorMessage = 'Failed to sign up!';
+    });
+
+
   }
 }

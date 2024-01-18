@@ -38,6 +38,8 @@ export class AddTourComponent {
     tour['rating'] = 0;
 
     this.toursService.addTour(tour);
+
+    this.tourForm.reset();
   }
 
 }

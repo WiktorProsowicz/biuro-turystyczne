@@ -10,9 +10,12 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class UsersService {
 
   users: User[] = [];
+  currentUser: User | null = null;
 
   constructor(private httpClient: HttpClient, private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.db.object('users').valueChanges().subscribe(data => {
+
+      this.users = [];
 
       Object.keys(data).forEach((key: any) => {
         this.users.push(
@@ -22,23 +25,33 @@ export class UsersService {
           }
         );
       });
+
+      this.afAuth.authState.subscribe(user => {
+
+        if (user == null) {
+          this.currentUser = null;
+          return;
+        }
+
+          this.currentUser = this.users.find((u: User) => {
+            return u.email == user.email;});
+      });
     });
+
+
   }
 
+
+
   getCurrentUser(): User | null {
-    let user = null;
 
-    // this.afAuth.currentUser.then(data => {
-    //   if (data) {
-    //     user = this.users.find((user: User) => user.email == data.email);
-    //   }
-    // }).catch(error => { });
-
-    return user;
+    return this.currentUser;
   }
 
   logout() {
-    this.afAuth.signOut();
+    this.afAuth.signOut().then(() => {
+      this.currentUser = null;
+    });
   }
 
   signIn(email: string, password: string) {
@@ -49,8 +62,26 @@ export class UsersService {
     return this.afAuth.createUserWithEmailAndPassword(email, password);
   }
 
-  createUser(email: string) {
-    const user:
+  getNextId(): number {
+
+    if (this.users.length == 0) {
+      return 1;
+    }
+
+    return Math.max(...this.users.map((user: User) => user.id)) + 1;
+  }
+
+  createUser(email: string, nick: string) {
+
+
+
+    const nextId = this.getNextId();
+
+    this.db.object('users/' + nextId).set({
+      email: email,
+      nick: nick,
+      isAdmin: false
+    });
   }
 
   getUser(id: number): User {

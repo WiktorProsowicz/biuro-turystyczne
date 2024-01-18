@@ -15,6 +15,8 @@ export class OpinionsService {
 
     this.db.list<any>('opinions').valueChanges().subscribe(data => {
 
+      this.opinions = [];
+
       data.forEach((opinion: any) => {
         this.opinions.push(opinion);
       });

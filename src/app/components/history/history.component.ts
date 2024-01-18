@@ -1,4 +1,4 @@
-import { DatePipe, NgFor } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FilteredHistoryPipe } from '../../shared/pipes/filtered-history.pipe';
@@ -11,7 +11,7 @@ import { PurchasingService } from '../../shared/services/purchasing.service';
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [NgFor, FormsModule, DatePipe, FilteredHistoryPipe, MenuComponent],
+  imports: [NgFor, FormsModule, DatePipe, FilteredHistoryPipe, MenuComponent, NgIf],
   templateUrl: './history.component.html',
   styleUrl: './history.component.css'
 })

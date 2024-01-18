@@ -8,6 +8,7 @@ import { Tour } from '../../shared/interfaces/tour';
 import { ToursService } from '../../shared/services/tours.service';
 import { PurchasingService } from '../../shared/services/purchasing.service';
 import { BookingComponent } from '../booking/booking.component';
+import { UsersService } from '../../shared/services/users.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class BasketComponent {
 
   checkBoxes: { [key: number]: boolean } = {};
 
-  constructor(private bookingService: ToursBookingService, private purchasingService: PurchasingService, private currencyService: CurrencyService, private toursService: ToursService) {
+  constructor(private bookingService: ToursBookingService, private purchasingService: PurchasingService, private currencyService: CurrencyService, private toursService: ToursService, private usersService: UsersService) {
 
   }
 
@@ -43,7 +44,8 @@ export class BasketComponent {
       this.purchasingService.addPurchase({
         tour: tour,
         date: new Date().toISOString(),
-        seats: this.bookingService.getTourBooking(tour)
+        seats: this.bookingService.getTourBooking(tour),
+        userId: this.usersService.getCurrentUser().id
       });
     });
 

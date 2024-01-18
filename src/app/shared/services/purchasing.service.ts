@@ -5,6 +5,7 @@ import { Tour } from '../interfaces/tour';
 import { ToursService } from './tours.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { getTourStatus } from '../helpers';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,10 @@ export class PurchasingService {
 
   private purchases: Purchase[] = [];
 
-  constructor(private httpClient: HttpClient, private toursService: ToursService, private db: AngularFireDatabase) {
+  constructor(private httpClient: HttpClient, private toursService: ToursService, private db: AngularFireDatabase, private usersService: UsersService) {
     this.db.object('purchases').valueChanges().subscribe(data => {
+
+      this.purchases = [];
 
       Object.keys(data).forEach((key: any) => {
 
@@ -23,6 +26,7 @@ export class PurchasingService {
             tour: this.toursService.getTour(data[key].tourId),
             date: data[key].date,
             seats: data[key].seats,
+            userId: data[key].userId
           }
         );
       });
@@ -37,11 +41,22 @@ export class PurchasingService {
   }
 
   addPurchase(purchase: Purchase) {
-    this.purchases.push(purchase);
+    this.db.object('purchases/' + this.purchases.length).set({
+      tourId: purchase.tour.id,
+      date: purchase.date,
+      seats: purchase.seats,
+      userId: purchase.userId
+    });
   }
 
   getPurchases() {
-    return this.purchases;
+
+    if(this.usersService.getCurrentUser() == null) {
+      return [];
+    }
+
+    return this.purchases.filter((purchase: Purchase) => purchase.userId == this.usersService.getCurrentUser().id);
+
   }
 
   hasAnyUpcomingTours() {

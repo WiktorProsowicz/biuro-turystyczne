@@ -10,6 +10,8 @@ import { ToursService } from '../../shared/services/tours.service';
 import { Tour } from '../../shared/interfaces/tour';
 import { ToursFilterService } from '../../shared/services/tours-filter.service';
 import { ToursFilterComponent } from '../tours-filter/tours-filter.component';
+import { UsersService } from '../../shared/services/users.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,11 +23,17 @@ import { ToursFilterComponent } from '../tours-filter/tours-filter.component';
 })
 export class ToursComponent {
 
-  constructor(private toursService: ToursService, public toursFilterService: ToursFilterService) {
+  constructor(private toursService: ToursService, public toursFilterService: ToursFilterService, private usersService: UsersService, private router: Router) {
 
   }
 
   deleteTour(tour: Tour) {
+
+    if (this.usersService.getCurrentUser() == null) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
+
     this.toursService.deleteTour(tour);
   }
 

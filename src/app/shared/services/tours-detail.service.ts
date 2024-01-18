@@ -15,6 +15,8 @@ export class TourDetailService {
   constructor(private httpClient: HttpClient, private db: AngularFireDatabase) {
     this.db.object('details').valueChanges().subscribe(data => {
 
+      this.details = [];
+
       Object.keys(data).forEach((key: any) => {
         this.details.push(
           {

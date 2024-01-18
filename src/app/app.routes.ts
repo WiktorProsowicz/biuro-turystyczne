@@ -9,15 +9,16 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HomeComponent } from './components/home/home.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'tours', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent},
   { path: 'tours', component: ToursComponent },
   { path: 'tours/:id', component: TourDetailComponent },
-  { path: 'basket', component: BasketPageComponent },
-  { path: 'history', component: HistoryComponent },
-  { path: 'add-tour', component: AddTourComponent },
+  { path: 'basket', component: BasketPageComponent, canActivate: [authGuard] },
+  { path: 'history', component: HistoryComponent, canActivate: [authGuard] },
+  { path: 'add-tour', component: AddTourComponent, canActivate: [authGuard] },
   { path: 'sign-in', component: SigninComponent },
   { path: 'sign-up', component: SignupComponent },
   { path: '404', component: PageNotFoundComponent },

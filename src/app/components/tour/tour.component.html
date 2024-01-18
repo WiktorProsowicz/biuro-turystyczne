@@ -1,7 +1,7 @@
 <div class="shadow p-3 bg-white rounded position-relative" [ngClass]="getTourSeatsIndication()">
 
   <div class="d-flex align-items-center justify-content-center rounded-circle w-100">
-    <img [src]="tour.image" class="rounded-circle w-50" alt="Tour Image">
+    <img [src]="tour.image" class="rounded-circle w-50" style="aspect-ratio: 1 / 1; object-fit: cover;" alt="Tour Image">
   </div>
 
   <hr />
@@ -63,7 +63,7 @@
     <hr />
 
     <div class="d-flex justify-content-center gap-4 align-items-center">
-      <button class="btn btn-danger" (click)="deleteTour()">
+      <button class="btn btn-danger" *ngIf="getUser() != null && getUser().isAdmin" (click)="deleteTour()">
         <i class="bi bi-trash-fill"></i>
       </button>
 

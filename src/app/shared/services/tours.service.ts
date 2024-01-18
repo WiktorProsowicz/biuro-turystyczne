@@ -3,6 +3,7 @@ import { Tour } from '../interfaces/tour';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
+const DEFAULT_IMAGE = 'https://www.chemar.com.pl/wp-content/uploads/2020/12/placeholder-1-300x200.png';
 
 @Injectable({
   providedIn: 'root'
@@ -15,20 +16,23 @@ export class ToursService {
 
     this.db.object('tours').valueChanges().subscribe(data => {
 
+      this.tours = [];
+
       Object.keys(data).forEach((key: any) => {
-        this.tours.push(
-          {
-            id: parseInt(key),
-            ...data[key]
-          }
-        );
+
+        const image = ((data[key].image == '') ? DEFAULT_IMAGE : data[key].image);
+
+        const tour: Tour = {
+          id: parseInt(key),
+          ...data[key]
+        };
+
+        tour.image = image;
+
+        this.tours.push(tour);
       });
 
     });
-
-    // db.object('tours').valueChanges().subscribe((data: any) => {
-    //   this.tours = Object.values(data);
-    // });
   }
 
   getTours(): Tour[] {
@@ -36,7 +40,17 @@ export class ToursService {
   }
 
   addTour(tour: Tour) {
-    this.tours.push(tour);
+    this.db.object('tours/' + tour.id).set({
+      name: tour.name,
+      description: tour.description,
+      price: tour.price,
+      image: tour.image,
+      maxPeople: tour.maxPeople,
+      startDate: tour.startDate,
+      endDate: tour.endDate,
+      targetCountry: tour.targetCountry
+    });
+
   }
 
   reload() {

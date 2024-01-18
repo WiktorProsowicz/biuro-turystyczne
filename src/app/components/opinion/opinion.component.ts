@@ -20,7 +20,8 @@ export class OpinionComponent {
   user: User = {
     id: 0,
     nick: '',
-    email: ''
+    email: '',
+    isAdmin: false
   };
 
   constructor(private usersService: UsersService, db: AngularFireDatabase) {
