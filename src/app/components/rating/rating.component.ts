@@ -1,6 +1,8 @@
 import { DecimalPipe, NgClass, NgIf } from '@angular/common';
 import { Component, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsersService } from '../../shared/services/users.service';
 
 @Component({
   selector: 'app-rating',
@@ -16,9 +18,15 @@ export class RatingComponent {
 
   @Output() rated = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private router: Router, private usersService: UsersService) { }
 
   rate(rating: number) {
+
+    if(this.usersService.getCurrentUser() == null) {
+      this.router.navigate(['/sign-in']);
+      return;
+    }
+
     this.rated.emit(rating);
   }
 }

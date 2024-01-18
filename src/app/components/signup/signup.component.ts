@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UsersService } from '../../shared/services/users.service';
 import { MenuComponent } from '../menu/menu.component';
 
@@ -16,7 +16,7 @@ export class SignupComponent {
 
   errorMessage: string = '';
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, private router: Router) {
 
     this.formGroup = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -33,6 +33,7 @@ export class SignupComponent {
     this.usersService.signUp(this.formGroup.value.email, this.formGroup.value.password).then(data => {
       this.usersService.createUser(this.formGroup.value.email, this.formGroup.value.nick);
       this.formGroup.reset();
+      this.router.navigate(['/home']);
     }).catch(error => {
       this.errorMessage = 'Failed to sign up!';
     });

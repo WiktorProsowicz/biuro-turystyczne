@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
 import { UsersService } from '../../shared/services/users.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -18,7 +18,7 @@ export class SigninComponent {
 
   errorMessage: string = '';
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, private router: Router) {
 
     this.formGroup = new FormGroup({
       email: new FormControl('', [Validators.required]),
@@ -35,6 +35,7 @@ export class SigninComponent {
       this.errorMessage = 'Invalid email or password.';
     }).then((data) => {
       this.formGroup.reset();
+      this.router.navigate(['/home']);
     });
   }
 
