@@ -8,9 +8,9 @@
 </div>
 
 <div class="container mt-5">
-  <div class="row">
+  <div class="row mb-5">
     <div class="col-12 col-lg-6 order-2 order-lg-1">
-      <div class="d-flex justify-content-center align-items-center">
+      <div *ngIf="tourDetail != undefined" class="d-flex justify-content-center align-items-center">
         <ngb-carousel id="imagesCarousel" class="carousel slide w-75">
           <ng-template ngbSlide *ngFor="let image of tourDetail.images, index as i">
             <img [src]="image" class="d-block w-100" [ngClass]="{'active': i == 0}">
@@ -27,12 +27,20 @@
           </button>
         </ngb-carousel>
       </div>
+
+      <div *ngIf="tourDetail == undefined" class="d-flex justify-content-center align-items-center">
+        <div class="w-75">
+          <img [src]="tour.image" class="d-block w-100" />
+        </div>
+      </div>
     </div>
 
     <div class="col-12 col-lg-6 order-1 order-lg-2 p-5 p-lg-0">
       <h1 class="fw-light text-center mb-3">{{tour.name}}</h1>
 
-      <p>{{tourDetail.description}}</p>
+      <p *ngIf="tourDetail != undefined">{{tourDetail.description}}</p>
+
+      <p *ngIf="tourDetail == undefined">{{tour.description}}</p>
 
       <div class="tour__tiles mt-3 mt-4 d-flex gap-3 justify-content-around flex-column">
 
@@ -80,23 +88,20 @@
 
   <hr class="mt-3">
 
-  <div class="row mb-5">
+  <div class="row my-5">
 
-    <div class="col-12">
+    <div class="col-12 col-lg-6">
       <div class="container-fluid d-flex justify-content-center">
         <div *ngIf="mapsLoaded">
-          <google-map  [center]="center" [zoom]="zoom" width="800px" height="400px"></google-map>
+          <google-map [center]="center" [zoom]="zoom" width="480px" height="400px"></google-map>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-
-    <div class="col-12 mb-5 d-flex justify-content-center">
+    <div class="col-12 col-lg-6 mb-5 d-flex justify-content-center">
 
 
-      <div class="mt-3 p-3 w-50">
+      <div class="mt-3 p-3 w-100">
         <h3 class="fw-light">Add new opinion</h3>
 
         <form [formGroup]="opinionForm" (ngSubmit)="submitOpinion()">
@@ -119,12 +124,16 @@
       </div>
 
     </div>
+  </div>
 
+  <hr>
+
+  <div class="row mb-5">
     <div class="col-12">
       <div *ngFor="let opinion of getOpinions()">
         <div class="mt-4">
-        <app-opinion [opinion]="opinion"></app-opinion>
-          </div>
+          <app-opinion [opinion]="opinion"></app-opinion>
+        </div>
       </div>
     </div>
   </div>

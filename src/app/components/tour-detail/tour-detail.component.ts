@@ -100,10 +100,6 @@ export class TourDetailComponent {
           this.tourDetail = this.detailService.getDetail(this.tour);
         });
 
-        // db.object('opinions').valueChanges().subscribe(() => {
-
-        //   this.opinions = this.opinionsService.getOpinions(this.tour);
-        // });
       });
 
     });
